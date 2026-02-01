@@ -23,3 +23,4 @@ spec:
       pollInterval: 180
     defaultSettings:
       nodeDrainPolicy: always-allow
+      defaultDataPath: /mnt/k3s/longhorn
