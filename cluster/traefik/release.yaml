@@ -83,5 +83,4 @@ spec:
       annotations:
         metallb.io/loadBalancerIPs: 10.69.1.100
       spec:
-        # loadBalancerIP: 10.69.1.100
         externalTrafficPolicy: Local
