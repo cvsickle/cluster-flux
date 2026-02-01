@@ -13,12 +13,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      eks.amazonaws.com/component: coredns
+      kubernetes.io/name: CoreDNS
       k8s-app: kube-dns
   template:
     metadata:
       labels:
-        eks.amazonaws.com/component: coredns
+        kubernetes.io/name: CoreDNS
         k8s-app: kube-dns
     spec:
       containers: []
