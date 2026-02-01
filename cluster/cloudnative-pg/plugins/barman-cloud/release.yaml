@@ -5,10 +5,15 @@ metadata:
   namespace: cnpg-system
 spec:
   interval: 5m
-  chartRef:
-    kind: OCIRepository
-    name: cnpg-plugin-barman-cloud
-    namespace: cnpg-system
+  chart:
+    spec:
+      chart: plugin-barman-cloud
+      version: 0.4.0 # {"$imagepolicy": "flux-system:cnpg-plugin-barman-cloud:tag"}
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg
+        namespace: cnpg-system
+      interval: 1m
   values:
     replicaCount: 1
     image:
