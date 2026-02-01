@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: cnpg-operator
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cnpg-operator
+  policy:
+    semver:
+      range: '>=0.27.0 <1.0.0'
