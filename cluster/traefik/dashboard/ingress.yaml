@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: local-cvsickle-com-staging-tls
+    secretName: local-cvsickle-com-tls
   routes:
     - match: Host(`traefik.local.cvsickle.com`)
       kind: Rule
