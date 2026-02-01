@@ -50,18 +50,18 @@ spec:
         http:
           tls:
             enabled: true
-      # postgres:
-      #   expose:
-      #     default: true
-      #   port: 5432
-      #   exposedPort: 5432
-      #   protocol: TCP
-      # mariadb:
-      #   expose:
-      #     default: true
-      #   port: 3306
-      #   exposedPort: 3306
-      #   protocol: TCP
+      postgres:
+        expose:
+          default: true
+        port: 5432
+        exposedPort: 5432
+        protocol: TCP
+      mariadb:
+        expose:
+          default: true
+        port: 3306
+        exposedPort: 3306
+        protocol: TCP
     ingressRoute:
       dashboard:
         enabled: false
