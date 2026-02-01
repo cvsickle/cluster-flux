@@ -1,0 +1,90 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: traefik
+    namespace: traefik
+  values:
+    global:
+      checkNewVersion: false
+      sendAnonymousUsage: false
+    additionalArguments:
+      - "--serversTransport.insecureSkipVerify=true"
+      - "--providers.kubernetesCRD.allowCrossNamespace=true"
+      - "--log.level=INFO"
+    deployment:
+      enabled: true
+      replicas: 3
+      revisionHistoryLimit: 2
+    updateStrategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
+        maxSurge: 0
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - traefik
+            topologyKey: kubernetes.io/hostname
+    ports:
+      web:
+        http:
+          redirections:
+            entrypoint:
+              to: websecure
+              priority: 10
+      websecure:
+        http3:
+          enabled: true
+          advertisedPort: 4443
+        http:
+          tls:
+            enabled: true
+      postgres:
+        expose:
+          default: true
+        port: 5432
+        exposedPort: 5432
+        protocol: TCP
+      mariadb:
+        expose:
+          default: true
+        port: 3306
+        exposedPort: 3306
+        protocol: TCP
+    ingressRoute:
+      dashboard:
+        enabled: false
+    providers:
+      kubernetesCRD:
+        enabled: true
+        ingressClass: traefik-local
+        allowExternalNameServices: true
+      kubernetesIngress:
+        enabled: true
+        allowExternalNameServices: true
+        publishedService:
+          enabled: false
+    rbac:
+      enabled: true
+    service:
+      enabled: true
+      type: LoadBalancer
+      annotations:
+        metallb.io/loadBalancerIPs: 10.69.1.100
+      labels: {}
+      spec:
+        loadBalancerIP: 10.69.1.100
+        externalTrafficPolicy: Local
+      loadBalancerSourceRanges: []
+      externalIPs: []
