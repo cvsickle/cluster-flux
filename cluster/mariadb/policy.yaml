@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: mariadb-operator
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: mariadb-operator
+  policy:
+    semver:
+      range: '>25.10.0 <26.0.0'
