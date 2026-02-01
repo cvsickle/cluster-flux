@@ -19,3 +19,4 @@ spec:
           port: 80
       middlewares:
         - name: longhorn-headers
+          namespace: longhorn-system
