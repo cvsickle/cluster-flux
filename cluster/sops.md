@@ -15,8 +15,7 @@ kubectl create secret generic secret-name -n namespace \
 Then, encrypt the secret using the public key.
 
 ```bash
-sops --age=age1v59tukq0cvskn0ww9dwhh9z4ytgj03u599rtzs8xap83jtm8msssc9z8q7 \
---encrypt --encrypt-regex '^(data|stringData)$' --in-place secret.yaml
+sops --age=age1v59tukq0cvskn0ww9dwhh9z4ytgj03u599rtzs8xap83jtm8msssc9z8q7 --encrypt --encrypted-regex '^(data|stringData)$' --in-place secret.yaml
 ```
 
 # Setup
