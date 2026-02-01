@@ -1,0 +1,37 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cnpg
+  namespace: cnpg-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cloudnative-pg
+      version: 0.27.0 # {"$imagepolicy": "flux-system:cnpg-operator:tag"}
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg
+        namespace: cnpg-system
+      interval: 1m
+  values:
+    replicaCount: 3
+    updateStrategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
+        maxSurge: 0
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - cloudnative-pg
+            topologyKey: kubernetes.io/hostname
+    config:
+      data:
+        INCLUDE_PLUGINS: "barman-cloud.cloudnative-pg.io"
