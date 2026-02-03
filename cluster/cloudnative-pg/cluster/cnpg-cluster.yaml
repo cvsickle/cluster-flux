@@ -1,0 +1,27 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-cluster
+  namespace: cnpg-system
+spec:
+  instances: 3
+  imagePullPolicy: Always
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 18
+  affinity:
+    enablePodAntiAffinity: true
+    podAntiAffinityType: required
+    topologyKey: "kubernetes.io/hostname"
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: false
+      parameters:
+        barmanObjectName: cnpg-minio-store-cnpg
+  storage:
+    size: 64Gi
+    storageClass: longhorn-cnpg-1r
+  superuserSecret: cnpg-cluster-auth

@@ -1,0 +1,20 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: minio-store-cnpg
+  namespace: cnpg-system
+spec:
+  retentionPolicy: "7d"
+  configuration:
+    destinationPath: s3://cloudnative-pg/cnpg
+    endpointURL: https://s3.local.cvsickle.com
+    s3Credentials:
+      accessKeyId:
+        name: minio-creds-cnpg
+        key: MINIO_ACCESS_KEY
+      secretAccessKey:
+        name: minio-creds-cnpg
+        key: MINIO_SECRET_KEY
+    wal:
+      compression: gzip
