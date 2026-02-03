@@ -26,12 +26,12 @@ spec:
     storageClass: longhorn-cnpg-1r
   # superuserSecret:
   #   name: cnpg-cluster-auth
-  # bootstrap:
-  #   initdb:
-  #     database: initcluster
-  #     owner: postgres
-  #     secret:
-  #       name: cnpg-cluster-auth
+  bootstrap:
+    initdb:
+      database: initcluster
+      owner: postgres
+      secret:
+        name: cnpg-cluster-auth
   # managed:
   #   roles:
   #     - name: outline
