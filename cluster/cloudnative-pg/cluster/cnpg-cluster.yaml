@@ -32,12 +32,19 @@ spec:
         name: cnpg-cluster-auth
   # superuserSecret:
   #   name: cnpg-cluster-auth
-  # managed:
-  #   roles:
-  #     - name: outline
-  #       ensure: present
-  #       comment: Outline Wiki Database User
-  #       login: true
-  #       superuser: false
-  #       passwordSecret:
-  #         name: cnpg-outline-auth
+  managed:
+    roles:
+      - name: corey
+        ensure: present
+        comment: Postgres Super User
+        login: true
+        superuser: true
+        passwordSecret:
+          name: cnpg-cluster-auth
+      - name: outline
+        ensure: present
+        comment: Outline Wiki Database User
+        login: true
+        superuser: false
+        passwordSecret:
+          name: cnpg-outline-auth
