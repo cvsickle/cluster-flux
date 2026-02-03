@@ -20,7 +20,7 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: false
       parameters:
-        barmanObjectName: cnpg-minio-store-cnpg
+        barmanObjectName: minio-store-cnpg
   storage:
     size: 64Gi
     storageClass: longhorn-cnpg-1r
