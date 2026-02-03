@@ -35,4 +35,3 @@ spec:
         superuser: false
         passwordSecret:
           name: cnpg-outline-auth
-          namespace: outline
