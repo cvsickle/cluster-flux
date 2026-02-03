@@ -30,8 +30,6 @@ spec:
       owner: corey
       secret:
         name: cnpg-cluster-auth
-  # superuserSecret:
-  #   name: cnpg-cluster-auth
   managed:
     roles:
       - name: corey
