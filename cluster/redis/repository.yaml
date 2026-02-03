@@ -5,6 +5,6 @@ metadata:
   namespace: redis-system
 spec:
   interval: 5m
-  url: oci://registry-1.docker.io/bitnamicharts/redis
+  url: oci://registry-1.docker.io/bitnamicharts/redis-cluster
   ref:
-    semver: 24.1.3 # {"$imagepolicy": "flux-system:redis:tag"}
+    semver: 13.0.4 # {"$imagepolicy": "flux-system:redis:tag"}

@@ -5,5 +5,5 @@ metadata:
   name: redis
   namespace: flux-system
 spec:
-  image: registry-1.docker.io/bitnamicharts/redis
+  image: registry-1.docker.io/bitnamicharts/redis-cluster
   interval: 1h
