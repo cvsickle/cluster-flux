@@ -27,7 +27,7 @@ spec:
   bootstrap:
     initdb:
       database: initcluster
-      owner: postgres
+      owner: corey
       secret:
         name: cnpg-cluster-auth
   # superuserSecret:
