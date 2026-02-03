@@ -26,3 +26,10 @@ spec:
     storageClass: longhorn-cnpg-1r
   superuserSecret:
     name: cnpg-cluster-auth
+  managed:
+    roles:
+      - name: outline
+        ensure: present
+        comment: Outline Wiki Database User
+        login: true
+        superuser: false
