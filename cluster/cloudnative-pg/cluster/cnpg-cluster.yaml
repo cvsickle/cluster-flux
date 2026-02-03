@@ -33,3 +33,6 @@ spec:
         comment: Outline Wiki Database User
         login: true
         superuser: false
+        passwordSecret:
+          name: cnpg-outline-auth
+          namespace: outline
