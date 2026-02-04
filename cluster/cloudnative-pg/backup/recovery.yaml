@@ -19,7 +19,7 @@ spec:
     recovery:
       source: cnpg-bakcups
       recoveryTarget:
-        backupID: "cnpg-daily-11pm-20260204040000"
+        backupID: "20260204T040002"
   externalClusters:
   - name: cnpg-bakcups
     plugin:
