@@ -13,3 +13,13 @@ spec:
     replicas: 3
     featureGates:
       GenerateConfigInInitContainer: true
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - redis-operator
+            topologyKey: kubernetes.io/hostname
