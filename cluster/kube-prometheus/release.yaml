@@ -11,7 +11,7 @@ spec:
       version: 81.5.0 # {"$imagepolicy": "flux-system:kube-prometheus:tag"}
       sourceRef:
         kind: HelmRepository
-        name: ckube-prometheusg
+        name: kube-prometheus
         namespace: kube-prometheus
       interval: 1m
   values:
