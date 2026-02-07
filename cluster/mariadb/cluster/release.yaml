@@ -1,0 +1,97 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb
+  namespace: mariadb-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mariadb-cluster
+      version: 25.10.4 # {"$imagepolicy": "flux-system:mariadb-operator:tag"}
+      sourceRef:
+        kind: HelmRepository
+        name: mariadb
+        namespace: mariadb-system
+      interval: 1m
+  values:
+    mariadb:
+      storage:
+        size: 64Gi
+        storageClass: longhorn-mariadb-1r
+      replicas: 3
+      affinity:
+        antiAffinityEnabled: true
+      galera:
+        enabled: true
+    databases:
+      - name: uptimekuma
+        characterSet: utf8
+        collate: utf8_general_ci
+        cleanupPolicy: Delete
+        requeueInterval: 10h
+        retryInterval: 30s
+    users:
+      - name: corey
+        passwordSecretKeyRef:
+          name: mariadb-cluster-auth
+          key: password
+        host: "%"
+        cleanupPolicy: Skip
+        requeueInterval: 10h
+        retryInterval: 30s
+      - name: uptimekuma
+        passwordSecretKeyRef:
+          name: mariadb-uptimekuma-auth
+          key: password
+        host: "%"
+        cleanupPolicy: Delete
+        requeueInterval: 10h
+        retryInterval: 30s
+    grants:
+      - name: corey
+        privileges:
+          - "ALL PRIVILEGES"
+        database: "*"
+        table: "*"
+        username: corey
+        grantOption: true
+        host: "%"
+        cleanupPolicy: Skip
+        requeueInterval: 10h
+        retryInterval: 30s
+      - name: uptimekuma
+        privileges:
+          - "ALL PRIVILEGES"
+        database: uptimekuma
+        table: "*"
+        username: uptimekuma
+        grantOption: true
+        host: "%"
+        cleanupPolicy: Delete
+        requeueInterval: 10h
+        retryInterval: 30s
+    physicalBackups:
+      - name: 3pm
+        schedule:
+          cron: "0 20 * * *"
+          suspend: false
+          immediate: true
+        compression: gzip
+        maxRetention: 168h
+        storage:
+          s3:
+            bucket: mariadb
+            prefix: mariadb
+            endpoint: s3.local.cvsickle.com
+            region: us-east-1
+            accessKeyIdSecretKeyRef:
+              name: minio-creds-mariadb
+              key: MINIO_ACCESS_KEY
+            secretAccessKeySecretKeyRef:
+              name: minio-creds-mariadb
+              key: MINIO_SECRET_KEY
+            tls:
+              enabled: true
+    
