@@ -33,6 +33,15 @@ spec:
         passwordKey: password
       nodeSelector:
         kubernetes.io/hostname: k3s-w1
+      persistence:
+        enabled: true
+        type: sts
+        storageClassName: longhorn
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
+        finalizers:
+          - kubernetes.io/pvc-protection
     kubernetesServiceMonitors:
       enabled: true
     kubeApiServer:
