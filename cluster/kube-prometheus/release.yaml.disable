@@ -21,6 +21,9 @@ spec:
       enabled: false
     alertmanager:
       enabled: false
+      alertmanagerSpec:
+        nodeSelector:
+          kubernetes.io/hostname: k3-w1
     grafana:
       enabled: true
       defaultDashboardsTimezone: America/New_York
@@ -28,6 +31,8 @@ spec:
         existingSecret: monitor-grafana-auth
         userKey: username
         passwordKey: password
+      nodeSelector:
+        kubernetes.io/hostname: k3-w1
     kubernetesServiceMonitors:
       enabled: true
     kubeApiServer:
@@ -35,41 +40,39 @@ spec:
     kubelet:
       enabled: true
     kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 10.69.1.81
-        - 10.69.1.82
-        - 10.69.1.83
+      enabled: false
     coreDns:
       enabled: true
     kubeDns:
       enabled: false
     kubeEtcd:
-      enabled: true
-      endpoints:
-        - 10.69.1.81
-        - 10.69.1.82
-        - 10.69.1.83
+      enabled: false
     kubeScheduler:
-      enabled: true
-      endpoints:
-        - 10.69.1.81
-        - 10.69.1.82
-        - 10.69.1.83
+      enabled: false
     kubeProxy:
-      enabled: true
-      endpoints:
-        - 10.69.1.81
-        - 10.69.1.82
-        - 10.69.1.83
+      enabled: false
     kubeStateMetrics:
       enabled: true
+      nodeSelector:
+        kubernetes.io/hostname: k3-w1
     nodeExporter:
       enabled: true
+      operatingSystems:
+        linux:
+          enabled: true
+        aix:
+          enabled: false
+        darwin:
+          enabled: false
     prometheusOperator:
       enabled: true
+      nodeSelector:
+        kubernetes.io/hostname: k3-w1
     prometheus:
       enabled: true
+      prometheusSpec:
+        nodeSelector:
+          kubernetes.io/hostname: k3-w1
     thanosRuler:
       enabled: false
     cleanPrometheusOperatorObjectNames: true
