@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: mariadb
+  name: mariadb-cluster
   namespace: mariadb-system
 spec:
   interval: 5m
@@ -19,7 +19,7 @@ spec:
     mariadb:
       storage:
         size: 64Gi
-        storageClass: longhorn-mariadb-1r
+        storageClassName: longhorn-mariadb-1r
       replicas: 3
       affinity:
         antiAffinityEnabled: true
@@ -83,7 +83,7 @@ spec:
         storage:
           s3:
             bucket: mariadb
-            prefix: mariadb
+            prefix: mariadb-cluster
             endpoint: s3.local.cvsickle.com
             region: us-east-1
             accessKeyIdSecretKeyRef:
