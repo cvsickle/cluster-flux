@@ -53,6 +53,7 @@ spec:
       enabled: false
     kubeStateMetrics:
       enabled: true
+    kube-state-metrics:
       nodeSelector:
         kubernetes.io/hostname: k3s-w1
     nodeExporter:
