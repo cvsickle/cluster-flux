@@ -17,3 +17,8 @@ spec:
       services:
         - name: monitor-grafana
           port: 80
+    - match: Host(`graf.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: monitor-grafana
+          port: 80
