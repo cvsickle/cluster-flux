@@ -53,3 +53,10 @@ spec:
         superuser: false
         passwordSecret:
           name: cnpg-litellm-auth
+      - name: linkding
+        ensure: present
+        comment: Linkding Database User
+        login: true
+        superuser: false
+        passwordSecret:
+          name: cnpg-linkding-auth
