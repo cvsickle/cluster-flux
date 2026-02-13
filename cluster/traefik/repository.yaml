@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/traefik/helm/traefik
   ref:
-    semver: 39.0.0 # {"$imagepolicy": "flux-system:traefik:tag"}
+    semver: 39.0.1 # {"$imagepolicy": "flux-system:traefik:tag"}
