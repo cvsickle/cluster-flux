@@ -12,7 +12,7 @@ spec:
   tls:
     passthrough: true
   routes:
-    - match: HostSNI(`cnpg.local.cvsickle.com`)
+    - match: HostSNI(`*`)
       services:
         - name: cnpg-cluster-rw
           port: 5432
