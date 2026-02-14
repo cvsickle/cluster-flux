@@ -53,6 +53,13 @@ spec:
         superuser: false
         passwordSecret:
           name: cnpg-litellm-auth
+      - name: openwebui
+        ensure: present
+        comment: Open WebUI Database User
+        login: true
+        superuser: false
+        passwordSecret:
+          name: cnpg-openwebui-auth
       - name: linkding
         ensure: present
         comment: Linkding Database User
