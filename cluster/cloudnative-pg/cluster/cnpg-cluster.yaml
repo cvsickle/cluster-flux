@@ -60,3 +60,10 @@ spec:
         superuser: false
         passwordSecret:
           name: cnpg-linkding-auth
+      - name: paperless
+        ensure: present
+        comment: Paperless Database User
+        login: true
+        superuser: false
+        passwordSecret:
+          name: cnpg-paperless-auth
