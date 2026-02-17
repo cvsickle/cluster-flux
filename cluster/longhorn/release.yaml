@@ -24,9 +24,9 @@ spec:
     defaultSettings:
       nodeDrainPolicy: always-allow
       defaultDataPath: /mnt/k3s/longhorn
-    image:
-      longhorn:
-        manager:
-          tag: v1.11.0-hotfix-1
-        instanceManager:
-          tag: v1.11.0-hotfix-2
+    # image:
+    #   longhorn:
+    #     manager:
+    #       tag: v1.11.0-hotfix-1
+    #     instanceManager:
+    #       tag: v1.11.0-hotfix-2
