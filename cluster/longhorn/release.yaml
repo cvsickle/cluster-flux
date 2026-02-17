@@ -17,9 +17,6 @@ spec:
     manager:
       replicas: 3
     upgradeVersionCheck: false
-    preUpgradeChecker:
-      jobEnabled: true
-      upgradeVersionCheck: false
     defaultBackupStore:
       backupTarget: cifs://10.69.1.40/snapshots/longhorn/
       backupTargetCredentialSecret: longhorn-cifs-monolith
@@ -27,6 +24,10 @@ spec:
     defaultSettings:
       nodeDrainPolicy: always-allow
       defaultDataPath: /mnt/k3s/longhorn
+    # 1.11.0 Hotfix - BELOW
+    preUpgradeChecker:
+      jobEnabled: true
+      upgradeVersionCheck: false
     image:
       longhorn:
         instanceManager:
