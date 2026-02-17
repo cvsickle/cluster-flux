@@ -17,6 +17,9 @@ spec:
     manager:
       replicas: 3
     upgradeVersionCheck: false
+    preUpgradeChecker:
+      jobEnabled: true
+      upgradeVersionCheck: false
     defaultBackupStore:
       backupTarget: cifs://10.69.1.40/snapshots/longhorn/
       backupTargetCredentialSecret: longhorn-cifs-monolith
