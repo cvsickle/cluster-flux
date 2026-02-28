@@ -50,14 +50,6 @@ spec:
         http:
           tls:
             enabled: true
-        forwardedHeaders:
-          trustedIPs:
-            - 10.69.100.100
-            - 10.69.100.101
-        proxyProtocol:
-          trustedIPs:
-            - 10.69.100.100
-            - 10.69.100.101
       postgres:
         expose:
           default: true
