@@ -74,6 +74,8 @@ flux get kustomizations --watch
 flux reconcile kustomization flux-system --with-source
 # Apps
 flux reconcile kustomization cluster-apps --with-source
+# Infrastructure
+flux reconcile kustomization cluster-infrastructure --with-source
 ```
 
 ### Get Helm Chart Versions
