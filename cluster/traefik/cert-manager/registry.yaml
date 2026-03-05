@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1
-kind: ImageRepository
-metadata:
-  name: cert-manager
-  namespace: flux-system
-spec:
-  image: quay.io/jetstack/charts/cert-manager
-  interval: 1h

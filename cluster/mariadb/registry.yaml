@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1
-kind: ImageRepository
-metadata:
-  name: mariadb-operator
-  namespace: flux-system
-spec:
-  image: ghcr.io/mariadb-operator/mariadb-operator
-  interval: 1h
