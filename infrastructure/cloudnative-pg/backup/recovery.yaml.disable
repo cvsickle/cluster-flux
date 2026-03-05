@@ -1,0 +1,29 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-restore
+  namespace: cnpg-system
+spec:
+  instances: 1
+  imagePullPolicy: IfNotPresent
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 18
+  storage:
+    size: 4Gi
+    storageClass: longhorn-cnpg-1r
+  bootstrap:
+    recovery:
+      source: cnpg-bakcups
+      recoveryTarget:
+        backupID: "20260204T040002"
+  externalClusters:
+  - name: cnpg-bakcups
+    plugin:
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: minio-store-cnpg
+        serverName: cnpg-cluster

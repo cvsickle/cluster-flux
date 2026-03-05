@@ -1,0 +1,278 @@
+# Taken from https://github.com/kekkker/cert-manager-webhook-njalla
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: njalla-webhook
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: njalla-webhook
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - 'secrets'
+    verbs:
+      - 'get'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: njalla-webhook:flowcontrol-solver
+  labels:
+    app: njalla-webhook
+rules:
+  - apiGroups:
+      - "flowcontrol.apiserver.k8s.io"
+    resources:
+      - 'prioritylevelconfigurations'
+      - 'flowschemas'
+    verbs:
+      - 'list'
+      - 'watch'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: njalla-webhook:flowcontrol-solver
+  labels:
+    app: njalla-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: njalla-webhook:flowcontrol-solver
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: njalla-webhook
+    namespace: cert-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: njalla-webhook
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: njalla-webhook
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: njalla-webhook
+    namespace: cert-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: njalla-webhook:webhook-authentication-reader
+  namespace: kube-system
+  labels:
+    app: njalla-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: extension-apiserver-authentication-reader
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: njalla-webhook
+    namespace: cert-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: njalla-webhook:auth-delegator
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: njalla-webhook
+    namespace: cert-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: njalla-webhook:domain-solver
+  labels:
+    app: njalla-webhook
+rules:
+  - apiGroups:
+      - acme.yourcompany.com
+    resources:
+      - '*'
+    verbs:
+      - 'create'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: njalla-webhook:domain-solver
+  labels:
+    app: njalla-webhook
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: njalla-webhook:domain-solver
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: cert-manager
+    namespace: cert-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: njalla-webhook
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      targetPort: https
+      protocol: TCP
+      name: https
+  selector:
+    app: njalla-webhook
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: njalla-webhook
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app: njalla-webhook
+  template:
+    metadata:
+      labels:
+        app: njalla-webhook
+    spec:
+      serviceAccountName: njalla-webhook
+      containers:
+        - name: njalla-webhook
+          image: "ghcr.io/kekkker/cert-manager-webhook-njalla:latest"
+          imagePullPolicy: IfNotPresent
+          args:
+            - --tls-cert-file=/tls/tls.crt
+            - --tls-private-key-file=/tls/tls.key
+          env:
+            - name: GROUP_NAME
+              value: "acme.yourcompany.com"
+          ports:
+            - name: https
+              containerPort: 443
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          readinessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          volumeMounts:
+            - name: certs
+              mountPath: /tls
+              readOnly: true
+          resources: {}
+
+      volumes:
+        - name: certs
+          secret:
+            secretName: njalla-webhook-webhook-tls
+---
+apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  name: v1alpha1.acme.yourcompany.com
+  labels:
+    app: njalla-webhook
+  annotations:
+    cert-manager.io/inject-ca-from: "cert-manager/njalla-webhook-webhook-tls"
+spec:
+  group: acme.yourcompany.com
+  groupPriorityMinimum: 1000
+  versionPriority: 15
+  service:
+    name: njalla-webhook
+    namespace: cert-manager
+  version: v1alpha1
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: njalla-webhook-selfsign
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: njalla-webhook-ca
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  secretName: njalla-webhook-ca
+  duration: 43800h # 5y
+  issuerRef:
+    name: njalla-webhook-selfsign
+  commonName: "ca.njalla-webhook.cert-manager"
+  isCA: true
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: njalla-webhook-ca
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  ca:
+    secretName: njalla-webhook-ca
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: njalla-webhook-webhook-tls
+  namespace: cert-manager
+  labels:
+    app: njalla-webhook
+spec:
+  secretName: njalla-webhook-webhook-tls
+  duration: 8760h
+  issuerRef:
+    name: njalla-webhook-ca
+  dnsNames:
+    - njalla-webhook
+    - njalla-webhook.cert-manager
+    - njalla-webhook.cert-manager.svc
+    - njalla-webhook.cert-manager.svc.cluster.local

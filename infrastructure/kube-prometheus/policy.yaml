@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: kube-prometheus
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: kube-prometheus
+  policy:
+    semver:
+      range: '>=81.5.0'

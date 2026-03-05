@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: redis-cluster
+  namespace: redis-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/ot-container-kit/charts/redis-cluster
+  ref:
+    semver: 0.17.4 # {"$imagepolicy": "flux-system:redis-cluster:tag"}

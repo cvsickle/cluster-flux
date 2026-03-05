@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: cnpg-plugin-barman-cloud
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cnpg-plugin-barman-cloud
+  policy:
+    semver:
+      range: '>=0.3.0 <1.0.0'

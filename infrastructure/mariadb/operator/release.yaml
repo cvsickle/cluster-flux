@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator
+  namespace: mariadb-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mariadb-operator
+      version: 25.10.4 # {"$imagepolicy": "flux-system:mariadb-operator:tag"}
+      sourceRef:
+        kind: HelmRepository
+        name: mariadb
+        namespace: mariadb-system
+      interval: 1m
+  values:
+    ha:
+      enabled: true
+      replicas: 3
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - mariadb-operator
+            topologyKey: kubernetes.io/hostname
+    pdb:
+      enabled: true
+      maxUnavailable: 1
