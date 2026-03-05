@@ -85,6 +85,6 @@ helm search repo <reponame>/<chartname> --versions
 # Helpful Things
 
 - [TechnoTim](https://technotim.live/posts/flux-devops-gitops/)'s Demo of Flux ([video](https://www.youtube.com/watch?v=PFLimPh5-wo))
-- [LENS](https://lenshq.io/download) - a helpful UI for Kubernetes
+- [freelens](https://github.com/freelensapp/freelens) - a helpful UI for Kubernetes
 - [k9s](https://k9scli.io/topics/install/) - a CLI UI for Kubernetes
 - Using [Sealed Secrets](https://fluxcd.io/flux/guides/sealed-secrets/) in Flux.
