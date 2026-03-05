@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litellm
+  namespace: litellm
+data:
+  config.yaml: |
+    model_list:
+    general_settings:
+      store_model_in_db: True
+      store_prompts_in_spend_logs: True
+      user_header_mappings:
+        - header_name: X-OpenWebUI-User-Id
+          litellm_user_role: internal_user
+        - header_name: X-OpenWebUI-User-Email
+          litellm_user_role: customer
+    litellm_settings:
+      drop_params: True
+      modify_params: True
+      cache: True
+      cache_params:
+        type: redis
+        host: litellm-redis-master.litellm.svc.cluster.local
+        port: 6379
+    router_settings:
+      routing_strategy: simple-shuffle
+      redis_host: litellm-redis-master.litellm.svc.cluster.local
+      redis_port: 6379

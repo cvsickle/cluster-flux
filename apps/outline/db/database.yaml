@@ -1,0 +1,12 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: outline-cnpg
+  namespace: cnpg-system
+spec:
+  name: outline
+  owner: outline
+  databaseReclaimPolicy: retain
+  cluster:
+    name: cnpg-cluster

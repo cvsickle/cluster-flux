@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: paperless
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: paperless
+  policy:
+    semver:
+      range: '>=7.0.0'

@@ -1,0 +1,12 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: paperless-cnpg
+  namespace: cnpg-system
+spec:
+  name: paperless
+  owner: paperless
+  databaseReclaimPolicy: retain
+  cluster:
+    name: cnpg-cluster

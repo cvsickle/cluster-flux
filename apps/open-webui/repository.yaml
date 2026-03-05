@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: open-webui
+  namespace: open-webui
+spec:
+  interval: 5m
+  url: oci://ghcr.io/open-webui/helm-charts/open-webui
+  ref:
+    semver: 12.8.1 # {"$imagepolicy": "flux-system:open-webui:tag"}

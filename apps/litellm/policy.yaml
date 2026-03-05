@@ -1,0 +1,14 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: litellm
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: litellm
+  filterTags:
+    pattern: '^.*-stable$'
+  policy:
+    semver:
+      range: '>=1.81.0-0 <2.0.0'

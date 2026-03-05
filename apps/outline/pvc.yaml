@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: outline-file-storage
+  namespace: outline
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn-static
+  resources:
+    requests:
+      storage: 32Gi

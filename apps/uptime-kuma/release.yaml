@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: uptime-kuma
+    namespace: uptime-kuma
+  values:
+    controller:
+      enabled: true
+      kind: Deployment
+      replicas: 1
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 1
+          maxSurge: 1
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - uptime-kuma
+            topologyKey: kubernetes.io/hostname
+    dnsConfig:
+      nameservers:
+        - 10.69.1.2
+        - 10.69.1.3
+    persistentVolumeClaim:
+      create: false
+      existingPersistentVolumeClaim: uptime-kuma-data
+    env:
+      - name: TZ
+        value: America/New_York
+      - name: UPTIME_KUMA_DB_TYPE
+        value: mariadb
+      - name: UPTIME_KUMA_DB_HOSTNAME
+        value: mariadb-cluster.mariadb-system.svc.cluster.local
+      - name: UPTIME_KUMA_DB_PORT
+        value: 3306
+      - name: UPTIME_KUMA_DB_NAME
+        value: uptimekuma
+      - name: UPTIME_KUMA_DB_USERNAME
+        value: uptimekuma
+      - name: UPTIME_KUMA_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-uptimekuma-auth
+            key: password
+    resources:
+      requests:
+        cpu: "75m"
+        memory: "128Mi"
+      limits:
+        memory: "256Mi"
+    

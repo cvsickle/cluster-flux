@@ -1,0 +1,62 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: litellm
+  namespace: litellm
+spec:
+  interval: 5m
+  timeout: 20m
+  chartRef:
+    kind: OCIRepository
+    name: litellm
+    namespace: litellm
+  values:
+    # High Availability
+    replicaCount: 2
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - litellm
+            topologyKey: kubernetes.io/hostname
+    pdb:
+      enabled: true
+      maxUnavailable: 1
+    # Service
+    service:
+      type: ClusterIP
+      port: 4000
+    # Configuration
+    masterkeySecretName: litellm-master-key
+    masterkeySecretKey: LITELLM_MASTER_KEY
+    environmentSecrets:
+      - litellm-master-key
+    proxyConfigMap:
+      create: false
+      name: litellm
+    # Database
+    db:
+      useExisting: true
+      deployStandalone: false
+      endpoint: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+      database: litellm
+      secret:
+        name: cnpg-litellm-auth
+        usernameKey: username
+        passwordKey: password
+    # Cache
+    redis:
+      enabled: true
+      architecture: standalone
+    # Resource Limits
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "512Mi"
+      limits:
+        memory: "1.5Gi"

@@ -1,0 +1,37 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: linkding
+  namespace: linkding
+  annotations: 
+    kubernetes.io/ingress.class: traefik-local
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: local-cvsickle-com-tls
+  routes:
+    - match: Host(`linkding.local.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: linkding
+          port: 9090
+          sticky:
+            cookie:
+              name: linkding_affinity
+              httpOnly: true
+              secure: true
+    - match: Host(`link.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: linkding
+          port: 9090
+          sticky:
+            cookie:
+              name: linkding_affinity_external
+              httpOnly: true
+              secure: true
+      middlewares:
+        - name: default-headers
+          namespace: default

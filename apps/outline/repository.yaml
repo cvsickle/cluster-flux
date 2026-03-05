@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: outline
+  namespace: outline
+spec:
+  interval: 5m
+  url: https://community-charts.github.io/helm-charts

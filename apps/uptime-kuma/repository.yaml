@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  interval: 5m
+  url: oci://ghcr.io/pascaliske/helm-charts/uptime-kuma
+  ref:
+    semver: 3.0.0 # {"$imagepolicy": "flux-system:uptime-kuma:tag"}

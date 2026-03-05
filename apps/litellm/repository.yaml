@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: litellm
+  namespace: litellm
+spec:
+  interval: 5m
+  url: oci://ghcr.io/berriai/litellm-helm
+  ref:
+    semver: 1.81.14-stable # {"$imagepolicy": "flux-system:litellm:tag"}

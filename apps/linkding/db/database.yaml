@@ -1,0 +1,12 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: linkding-cnpg
+  namespace: cnpg-system
+spec:
+  name: linkding
+  owner: linkding
+  databaseReclaimPolicy: retain
+  cluster:
+    name: cnpg-cluster

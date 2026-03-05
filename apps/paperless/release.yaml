@@ -1,0 +1,110 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: paperless
+    namespace: paperless
+  values:
+    # High Availability
+    controller:
+      kind: Deployment
+      replicas: 2
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 1
+          maxSurge: 1
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - paperless
+            topologyKey: kubernetes.io/hostname
+    # Directories
+    consumption:
+      enabled: true
+      type: nfs
+      nfs:
+        server: 10.69.1.40
+        path: /volume1/paperless/paperless-ngx/consume
+    export:
+      enabled: true
+      type: nfs
+      nfs:
+        server: 10.69.1.40
+        path: /volume1/paperless/paperless-ngx/export
+    media:
+      enabled: true
+      type: nfs
+      nfs:
+        server: 10.69.1.40
+        path: /volume1/paperless/paperless-ngx/media
+    trash:
+      enabled: true
+      type: nfs
+      nfs:
+        server: 10.69.1.40
+        path: /volume1/paperless/paperless-ngx/trash
+    # State
+    persistentVolumeClaim:
+      create: false
+      existingPersistentVolumeClaim: paperless
+    # Cache
+    redis:
+      enabled: true
+      persistentVolumeClaim:
+        accessMode: ReadWriteMany
+        size: 4Gi
+        storageClassName: longhorn
+    # Environment
+    env:
+      - name: TZ
+        value: America/New_York
+      - name: USERMAP_UID
+        value: 1052
+      - name: USERMAP_GID
+        value: 100
+      - name: PAPERLESS_DBHOST
+        value: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+      - name: PAPERLESS_DBNAME
+        value: paperless
+      - name: PAPERLESS_DBUSER
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-paperless-auth
+            key: username
+      - name: PAPERLESS_DBPASS
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-paperless-auth
+            key: password
+      - name: PAPERLESS_URL
+        value: https://paperless.cvsickle.com
+      - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
+        value: "https://paperless.cvsickle.com,https://paperless.local.cvsickle.com"
+      - name: PAPERLESS_CORS_ALLOWED_HOSTS
+        value: "https://paperless.cvsickle.com,https://paperless.local.cvsickle.com"
+      - name: PAPERLESS_TRUSTED_PROXIES
+        value: "10.69.1.100,10.69.100.100,10.69.100.101"
+      - name: PAPERLESS_CONSUMER_POLLING
+        value: "30"
+      - name: PAPERLESS_TIKA_ENABLED
+        value: 1
+      - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
+        value: http://gotenburg.external-apps.svc.cluster.local:3000
+      - name: PAPERLESS_TIKA_ENDPOINT
+        value: http://tika.external-apps.svc.cluster.local:9998
+      - name: PAPERLESS_SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: paperless-secret-key
+            key: PAPERLESS_SECRET_KEY

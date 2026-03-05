@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: linkding
+  namespace: flux-system
+spec:
+  image: ghcr.io/pascaliske/helm-charts/linkding
+  interval: 1h

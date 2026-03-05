@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  interval: 5m
+  url: oci://ghcr.io/pascaliske/helm-charts/paperless
+  ref:
+    semver: 7.0.0 # {"$imagepolicy": "flux-system:paperless:tag"}
