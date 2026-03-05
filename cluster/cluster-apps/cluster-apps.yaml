@@ -10,8 +10,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster-apps
-  timeout: 5m
+    name: flux-system
   decryption:
     provider: sops
     secretRef:

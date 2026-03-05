@@ -36,7 +36,7 @@ spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: cluster-apps
+    name: flux-system
   update:
     path: ./apps
     strategy: Setters
