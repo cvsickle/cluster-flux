@@ -61,7 +61,7 @@ spec:
             name: cnpg-openwebui-auth
             key: password
       - name: ENABLE_FORWARD_USER_INFO_HEADERS
-        value: true
+        value: True
     # Resource Limits
     resources:
       requests:
