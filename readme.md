@@ -2,6 +2,9 @@
 
 This repository is a Flux CD deployment for a k3s cluster, running on three Beelink Mini PC's. One k3s server node and one k3s worker node on each host. If you're reading this, and you're not the owner of this particular cluster, you really shouldn't try to use this repository directly. Feel free to reference the deployment strategy and specifics, but don't try to use them unless you know what you're doing.
 
+- Github: [https://github.com/cvsickle/cluster-ansible](https://github.com/cvsickle/cluster-ansible)
+- Codeberg: [https://codeberg.org/cvsickle/cluster-flux](https://codeberg.org/cvsickle/cluster-flux)
+
 # Repository Structure
 
 ```bash
