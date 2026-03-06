@@ -12,13 +12,13 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
 │   ├── application1 # All top-level applications
 │   ├── application2 # running in the cluster are
 │   └── application3 # defined in this folder.
-|
+| 
 ├── cluster                    # Cluster Folder:
 │   ├── cluster-apps           # Kustomization
 │   ├── cluster-infrastructure # Kustomization
 │   ├── flux-system            # Flux Kustomization - NO TOUCHY
 │   └── update-automation      # Flux Update Automations
-|
+| 
 └── infrastructure # Infrastructure Folder:
     ├── service1   # Core services required for the cluster
     ├── service2   # to operate are defined in this folder.
