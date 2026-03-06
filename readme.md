@@ -2,6 +2,47 @@
 
 This repository is a Flux CD deployment for a k3s cluster, running on three Beelink Mini PC's. One k3s server node and one k3s worker node on each host. If you're reading this, and you're not the owner of this particular cluster, you really shouldn't try to use this repository directly. Feel free to reference the deployment strategy and specifics, but don't try to use them unless you know what you're doing.
 
+# Repository Structure
+
+```bash
+├── apps             # Apps Folder:
+│   ├── application1 # All top-level applications
+│   ├── application2 # running in the cluster are
+│   └── application3 # defined in this folder.
+|
+├── cluster                    # Cluster Folder:
+│   ├── cluster-apps           # Kustomization
+│   ├── cluster-infrastructure # Kustomization
+│   ├── flux-system            # Flux Kustomization - NO TOUCHY
+│   └── update-automation      # Flux Update Automations
+|
+└── infrastructure # Infrastructure Folder:
+    ├── service1   # Core services required for the cluster
+    ├── service2   # to operate are defined in this folder.
+    └── service3   # Storage, Ingress, Databases, etc.
+```
+
+# Reconciliation
+
+### Watch the Flux Kustomizations
+
+```bash
+flux get kustomizations --watch
+```
+
+### Reconcile any changes
+
+```bash
+# Apps
+flux reconcile kustomization cluster-apps --with-source
+
+# Cluster
+flux reconcile kustomization flux-system --with-source
+
+# Infrastructure
+flux reconcile kustomization cluster-infrastructure --with-source
+```
+
 # Local Machine Setup
 
 ### Install kubectl
@@ -60,23 +101,6 @@ kubectl get pods -n flux-system
 ```
 
 # Misc. Commands
-
-### Watch the Flux Kustomizations
-
-```bash
-flux get kustomizations --watch
-```
-
-### Reconcile any changes
-
-```bash
-# Cluster
-flux reconcile kustomization flux-system --with-source
-# Apps
-flux reconcile kustomization cluster-apps --with-source
-# Infrastructure
-flux reconcile kustomization cluster-infrastructure --with-source
-```
 
 ### Get Helm Chart Versions
 
