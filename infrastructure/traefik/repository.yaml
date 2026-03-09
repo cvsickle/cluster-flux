@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
@@ -8,3 +9,12 @@ spec:
   url: oci://ghcr.io/traefik/helm/traefik
   ref:
     semver: 39.0.5 # {"$imagepolicy": "flux-system:traefik:tag"}
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 5m
+  url: https://helm.traefik.io/traefik
