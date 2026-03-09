@@ -6,7 +6,7 @@ metadata:
   namespace: open-webui
 spec:
   interval: 5m
-  timeout: 15m
+  timeout: 20m
   chartRef:
     kind: OCIRepository
     name: open-webui
