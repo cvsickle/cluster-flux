@@ -16,5 +16,5 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
-  type: "oci"
-  url: oci://quay.io/jetstack/charts
+  type: oci
+  url: quay.io/jetstack/charts
