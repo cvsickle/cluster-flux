@@ -29,6 +29,7 @@ spec:
       jobEnabled: true
       upgradeVersionCheck: false
     image:
+      pullPolicy: Always
       longhorn:
         instanceManager:
           tag: v1.11.0-hotfix-2
