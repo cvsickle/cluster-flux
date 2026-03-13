@@ -4,6 +4,7 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
 
 - Github: [https://github.com/cvsickle/cluster-flux](https://github.com/cvsickle/cluster-flux)
 - Codeberg: [https://codeberg.org/cvsickle/cluster-flux](https://codeberg.org/cvsickle/cluster-flux)
+- Forgejo (Mirror): [https://git.cvsickle.com/cvsickle/cluster-flux](https://git.cvsickle.com/cvsickle/cluster-flux)
 
 # Repository Structure
 
