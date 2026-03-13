@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/ot-container-kit/charts/redis-operator
   ref:
-    semver: 0.23.0 # {"$imagepolicy": "flux-system:redis-operator:tag"}
+    semver: 0.24.0 # {"$imagepolicy": "flux-system:redis-operator:tag"}
