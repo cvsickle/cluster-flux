@@ -44,7 +44,7 @@ spec:
       telemetry: false
     image:
       repository: outlinewiki/outline
-      tag: 1.5.0 # {"$imagepolicy": "flux-system:outline:tag"}
+      tag: 1.6.0 # {"$imagepolicy": "flux-system:outline:tag"}
       pullPolicy: IfNotPresent
     # Database
     postgresql:
