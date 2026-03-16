@@ -34,9 +34,7 @@ spec:
             topologyKey: kubernetes.io/hostname
     # Misc. Configuration
     extraEnvVars:
-      NODE_ENV: "production"
       TZ: "America/New_York"
-      DEBUG: "false"
       CUSTOM_FEATURE_FLAG: "enabled"
     url: "https://wiki.cvsickle.com"
     autoUpdate:
