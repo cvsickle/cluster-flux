@@ -24,14 +24,8 @@ spec:
     defaultSettings:
       nodeDrainPolicy: always-allow
       defaultDataPath: /mnt/k3s/longhorn
-    # 1.11.0 Hotfix - BELOW
     preUpgradeChecker:
       jobEnabled: true
       upgradeVersionCheck: false
     image:
       pullPolicy: Always
-      longhorn:
-        instanceManager:
-          tag: v1.11.0-hotfix-2
-        manager:
-          tag: v1.11.0-hotfix-1
