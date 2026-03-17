@@ -108,3 +108,10 @@ spec:
           secretKeyRef:
             name: paperless-secret-key
             key: PAPERLESS_SECRET_KEY
+    # Resource Limits
+    resources:
+      requests:
+        cpu: "75m"
+        memory: "512Mi"
+      limits:
+        memory: "1Gi"
