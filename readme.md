@@ -47,6 +47,12 @@ flux reconcile kustomization flux-system --with-source
 flux reconcile kustomization cluster-infrastructure --with-source
 ```
 
+### Fix a timed-out HelmRelease
+
+```bash
+flux reconcile helmrelease <helmrelease_name> -n <namespace> --force
+```
+
 # Local Machine Setup
 
 ### Install kubectl
