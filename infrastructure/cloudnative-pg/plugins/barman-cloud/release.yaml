@@ -15,7 +15,7 @@ spec:
         namespace: cnpg-system
       interval: 1m
   values:
-    replicaCount: 3
+    replicaCount: 1
     image:
       pullPolicy: Always
     affinity:
