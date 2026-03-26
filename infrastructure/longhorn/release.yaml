@@ -26,6 +26,6 @@ spec:
       defaultDataPath: /mnt/k3s/longhorn
     preUpgradeChecker:
       jobEnabled: true
-      upgradeVersionCheck: false
+      upgradeVersionCheck: true
     image:
       pullPolicy: Always
