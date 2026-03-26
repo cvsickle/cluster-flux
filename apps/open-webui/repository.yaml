@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/open-webui/helm-charts/open-webui
   ref:
-    semver: 12.10.0 # {"$imagepolicy": "flux-system:open-webui:tag"}
+    semver: 12.11.0 # {"$imagepolicy": "flux-system:open-webui:tag"}
