@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cloudnative-pg
-      version: 0.27.1 # {"$imagepolicy": "flux-system:cnpg-operator:tag"}
+      version: 0.28.0 # {"$imagepolicy": "flux-system:cnpg-operator:tag"}
       sourceRef:
         kind: HelmRepository
         name: cnpg
