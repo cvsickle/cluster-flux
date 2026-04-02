@@ -12,6 +12,12 @@ spec:
     kind: ClusterImageCatalog
     name: postgresql
     major: 18
+  # Extensions
+  postgresql:
+    extensions:
+    - name: pgvector
+      image:
+        reference: ghcr.io/cloudnative-pg/pgvector:0.8.2-18-trixie
   affinity:
     enablePodAntiAffinity: true
     podAntiAffinityType: required
