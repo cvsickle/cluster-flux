@@ -10,3 +10,6 @@ spec:
   databaseReclaimPolicy: retain
   cluster:
     name: cnpg-cluster
+  extensions:
+    - name: vector
+      version: '0.8.2'
