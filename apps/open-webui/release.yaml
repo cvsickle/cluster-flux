@@ -42,6 +42,11 @@ spec:
       enabled: false
     # Environment
     extraEnvVars:
+      - name: WEBUI_SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: open-webui-secrets
+            key: secret-key
       - name: DATABASE_TYPE
         value: postgresql
       - name: DATABASE_HOST
@@ -62,6 +67,11 @@ spec:
             key: password
       - name: VECTOR_DB
         value: pgvector
+      - name: PGVECTOR_DB_URL
+        valueFrom:
+          secretKeyRef:
+            name: open-webui-secrets
+            key: vector-db-url
       - name: PGVECTOR_CREATE_EXTENSION
         value: "false"
       - name: ENABLE_FORWARD_USER_INFO_HEADERS
