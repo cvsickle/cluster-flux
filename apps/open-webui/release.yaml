@@ -60,6 +60,10 @@ spec:
           secretKeyRef:
             name: cnpg-openwebui-auth
             key: password
+      - name: VECTOR_DB
+        value: pgvector
+      - name: PGVECTOR_CREATE_EXTENSION
+        value: "false"
       - name: ENABLE_FORWARD_USER_INFO_HEADERS
         value: "True"
     # Resource Limits
