@@ -17,7 +17,7 @@ spec:
     extensions:
     - name: pgvector
       image:
-        reference: ghcr.io/cloudnative-pg/pgvector:0.8.2-18-trixie
+        reference: ghcr.io/cloudnative-pg/pgvector:0.8.1-18-trixie
   affinity:
     enablePodAntiAffinity: true
     podAntiAffinityType: required
