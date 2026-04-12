@@ -6,6 +6,7 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
+  timeout: 15m
   chartRef:
     kind: OCIRepository
     name: cert-manager
