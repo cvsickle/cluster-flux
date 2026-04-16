@@ -21,7 +21,7 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: app.kubernetes.io/name
+                - key: app.kubernetes.io/component
                   operator: In
                   values:
                     - open-webui
