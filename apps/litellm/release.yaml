@@ -54,7 +54,7 @@ spec:
       enabled: true
       architecture: standalone
       image:
-        tag: 8.6.2
+        repository: bitnamilegacy/redis
     # Resource Limits
     resources:
       requests:
