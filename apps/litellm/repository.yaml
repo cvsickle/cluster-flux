@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/berriai/litellm-helm
   ref:
-    semver: 1.83.10-stable # {"$imagepolicy": "flux-system:litellm:tag"}
+    semver: 1.83.14-stable # {"$imagepolicy": "flux-system:litellm:tag"}
