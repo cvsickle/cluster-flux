@@ -47,10 +47,10 @@ flux reconcile kustomization flux-system --with-source
 flux reconcile kustomization cluster-infrastructure --with-source
 ```
 
-### Fix a timed-out HelmRelease
+### Redeploy a HelmRelease
 
 ```bash
-flux reconcile helmrelease <helmrelease_name> -n <namespace> --force
+flux reconcile helmrelease <helmrelease_name> -n <namespace> --with-source --force
 ```
 
 # Local Machine Setup
