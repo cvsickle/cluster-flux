@@ -7,8 +7,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: litellm
-  filterTags:
-    pattern: '^.*-stable(\..+)?$'
   policy:
     semver:
-      range: '>=1.81.0-0 <2.0.0'
+      range: '>=1.83.0 <2.0.0'
