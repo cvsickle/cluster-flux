@@ -1,0 +1,37 @@
+{
+    "name": "k3s Cluster Tools",
+    "runArgs": ["--name=k3s-cluster-tools"],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "FLUX_VERSION": "2.8.8",
+            "KUBECTL_VERSION": "1.36.1",
+            "HELM_VERSION": "4.2.0",
+            "K9S_VERSION": "0.51.0",
+            "CNPG_VERSION": "1.29.1",
+            "LONGHORNCTL_VERSION": "1.11.2"
+        }
+    },
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}/.kube",
+            "target": "/home/vscode/.kube",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.ssh",
+            "target": "/home/vscode/.ssh",
+            "type": "bind"
+        }
+    ],
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
+                "weaveworks.vscode-gitops-tools",
+                "github.vscode-github-actions"
+            ]
+        }
+    }
+}
