@@ -9,6 +9,10 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
 # Repository Structure
 
 ```bash
+ ├── .devcontainer # Dev container definition
+ |
+ ├── .github       # GitHub actions
+ |
  ├── apps             # Apps Folder:
  │   ├── application1 # All top-level applications
  │   ├── application2 # running in the cluster are
@@ -55,35 +59,19 @@ flux reconcile helmrelease <helmrelease_name> -n <namespace> --with-source --for
 
 # Local Machine Setup
 
-### Install kubectl
+This repo uses a dev container defined in the `.devcontainer` directory. The container contains all the tools required for interacting with the cluster.
 
-```bash
-cd ~
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
+- kubectl (with cnpg plugin)
+- helm
+- flux
+- k9s
+- longhornctl
 
-### Install flux
+Using the container requires 3 mounts.
 
-The command below will install flux on a **local device** to manage the cluster. This should **NOT** be installed on the cluster.
-
-```bash
-curl -s https://fluxcd.io/install.sh | sudo bash
-# verify
-flux check --pre
-```
-
-### Install helm
-
-Helm also needs to be installed on a **local device** to properly manage the cluster.
-
-```bash
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
-# remove the script when install is complete
-rm get_helm.sh
-```
+- `~/.ssh` with a valid SSH key for the cluster hosts.
+- `~/.kube` with a valid kube config for the cluster.
+- `~/.gitconfig` with valid git credentials.
 
 # Create a GitHub Token
 
