@@ -37,7 +37,10 @@
                 "ms-kubernetes-tools.vscode-kubernetes-tools",
                 "weaveworks.vscode-gitops-tools",
                 "github.vscode-github-actions"
-            ]
+            ],
+            "settings": {
+                "git.useIntegratedAskPass": false
+            }
         }
     }
 }
