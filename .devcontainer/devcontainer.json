@@ -9,7 +9,8 @@
             "HELM_VERSION": "4.2.0",
             "K9S_VERSION": "0.51.0",
             "CNPG_VERSION": "1.29.1",
-            "LONGHORNCTL_VERSION": "1.11.2"
+            "LONGHORNCTL_VERSION": "1.11.2",
+            "SOPS_VERSION": "3.13.1"
         }
     },
     "mounts": [

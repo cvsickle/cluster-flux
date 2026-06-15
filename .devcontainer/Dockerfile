@@ -9,6 +9,7 @@ ARG HELM_VERSION=4.2.0
 ARG K9S_VERSION=0.51.0
 ARG CNPG_VERSION=1.29.1
 ARG LONGHORNCTL_VERSION=1.11.2
+ARG SOPS_VERSION=3.13.1
 # ─────────────────────────────────────────────────────────────
 
 RUN apt-get update && apt-get install -y \
@@ -55,6 +56,12 @@ RUN curl -fsSL \
     "https://github.com/longhorn/cli/releases/download/v${LONGHORNCTL_VERSION}/longhornctl-linux-${TARGETARCH}" \
     -o /usr/local/bin/longhornctl \
     && chmod +x /usr/local/bin/longhornctl
+
+# ── sops ──────────────────────────────────────────────────────
+RUN curl -fsSL \
+    "https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${TARGETARCH}" \
+    -o /usr/local/bin/sops \
+    && chmod +x /usr/local/bin/sops
 
 # ── Shell Completions ─────────────────────────────────────────
 RUN echo 'source <(kubectl completion bash)' >> /etc/bash.bashrc \
