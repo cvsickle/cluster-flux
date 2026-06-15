@@ -39,7 +39,7 @@
                 "github.vscode-github-actions"
             ],
             "settings": {
-                "git.useIntegratedAskPass": false
+                "git.useIntegratedAsk": false
             }
         }
     }
