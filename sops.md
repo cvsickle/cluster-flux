@@ -22,15 +22,7 @@ rm secret.yaml
 
 # Setup
 
-First, install SOPS.
-
-```bash
-curl -LO https://github.com/getsops/sops/releases/download/v3.8.1/sops-v3.8.1.linux.amd64
-chmod +x sops-v3.8.1.linux.amd64
-sudo mv sops-v3.8.1.linux.amd64 /usr/local/bin/sops
-```
-
-Create an AGE key.
+SOPS is included in the dev container. To create an AGE key...
 
 ```bash
 age-keygen -o age.agekey
