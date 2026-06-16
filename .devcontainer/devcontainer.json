@@ -30,6 +30,10 @@
             "type": "bind"
         }
     ],
+    "remoteEnv": {
+        "GIT_ASKPASS": "/bin/echo",
+        "SSH_ASKPASS": "/bin/echo"
+    },
     "remoteUser": "vscode",
     "customizations": {
         "vscode": {
