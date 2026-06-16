@@ -22,7 +22,7 @@ rm secret.yaml
 
 # Setup
 
-SOPS is included in the dev container. To create an AGE key...
+SOPS is included in the dev container. To create an AGE key:
 
 ```bash
 age-keygen -o age.agekey
