@@ -33,7 +33,8 @@
     "remoteUser": "vscode",
     "containerEnv": {
         "SSH_ASKPASS": "",
-        "SSH_ASKPASS_REQUIRE": ""
+        "SSH_ASKPASS_REQUIRE": "",
+        "TESTMYVARIABLE": ""
     },
     "customizations": {
         "vscode": {
