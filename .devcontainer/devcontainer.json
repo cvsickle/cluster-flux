@@ -39,7 +39,8 @@
                 "github.vscode-github-actions"
             ],
             "settings": {
-                "git.useIntegratedAsk": false
+                "git.useIntegratedAsk": false,
+                "git.terminalAuthentication": false
             }
         }
     }
