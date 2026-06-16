@@ -31,6 +31,10 @@
         }
     ],
     "remoteUser": "vscode",
+    "containerEnv": {
+        "SSH_ASKPASS": "",
+        "SSH_ASKPASS_REQUIRE": ""
+    },
     "customizations": {
         "vscode": {
             "extensions": [
