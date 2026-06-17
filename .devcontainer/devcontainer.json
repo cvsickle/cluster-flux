@@ -30,10 +30,6 @@
             "type": "bind"
         }
     ],
-    "containerEnv": {
-        "SSH_ASKPASS": "",
-        "SSH_ASKPASS_REQUIRE": "never"
-    },
     "remoteUser": "vscode",
     "customizations": {
         "vscode": {
