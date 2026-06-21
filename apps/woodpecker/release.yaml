@@ -34,6 +34,8 @@ spec:
           - ReadWriteMany
       env:
         WOODPECKER_HOST: "https://woodpecker.cvsickle.com"
+        WOODPECKER_OPEN: "false"
+        WOODPECKER_ADMIN: "cvsickle"
         WOODPECKER_GITHUB: "true"
       extraSecretNamesForEnvFrom:
         - woodpecker-github
