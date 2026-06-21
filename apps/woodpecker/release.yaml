@@ -19,6 +19,8 @@ spec:
         storageClass: longhorn
         accessModes:
           - ReadWriteMany
+      env:
+        WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
     server:
       enabled: true
       statefulSet:
@@ -33,9 +35,9 @@ spec:
         accessModes:
           - ReadWriteMany
       env:
-        WOODPECKER_HOST: "https://woodpecker.cvsickle.com"
-        WOODPECKER_OPEN: "false"
-        WOODPECKER_ADMIN: "cvsickle"
-        WOODPECKER_GITHUB: "true"
+        WOODPECKER_HOST: https://woodpecker.cvsickle.com
+        WOODPECKER_OPEN: false
+        WOODPECKER_ADMIN: cvsickle
+        WOODPECKER_GITHUB: true
       extraSecretNamesForEnvFrom:
         - woodpecker-github
