@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: woodpecker
+    namespace: woodpecker
+  values:
+    agent:
+      enabled: true
+      replicaCount: 2
+      persistence:
+        enabled: true
+        existingClaim: woodpecker-agent
+    server:
+      enabled: true
+      statefulSet:
+        replicaCount: 2
+        revisionHistoryLimit: 2
+      updateStrategy:
+        type: RollingUpdate
+      persistence:
+        enabled: true
+        existingClaim: woodpecker-server
