@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  interval: 5m
+  url: oci://ghcr.io/woodpecker-ci/helm/woodpecker
+  ref:
+    semver: 3.6.4 # {"$imagepolicy": "flux-system:woodpecker:tag"}
