@@ -15,7 +15,10 @@ spec:
       replicaCount: 2
       persistence:
         enabled: true
-        existingClaim: woodpecker-agent
+        size: 10Gi
+        storageClass: longhorn
+        accessModes:
+          - ReadWriteMany
     server:
       enabled: true
       statefulSet:
@@ -25,4 +28,7 @@ spec:
         type: RollingUpdate
       persistence:
         enabled: true
-        existingClaim: woodpecker-server
+        size: 10Gi
+        storageClass: longhorn
+        accessModes:
+          - ReadWriteMany
