@@ -80,3 +80,10 @@ spec:
         superuser: false
         passwordSecret:
           name: cnpg-paperless-auth
+      - name: woodpecker
+        ensure: present
+        comment: Woodpecker Database User
+        login: true
+        superuser: false
+        passwordSecret:
+          name: cnpg-woodpecker-auth
