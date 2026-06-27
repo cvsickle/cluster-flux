@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: reflector
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: reflector
+  policy:
+    semver:
+      range: '>=10.0.54 <11.0.0'

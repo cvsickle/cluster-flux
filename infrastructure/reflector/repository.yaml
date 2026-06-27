@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: reflector
+  namespace: kube-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/emberstack/helm-charts/reflector
+  ref:
+    semver: 10.0.54 # {"$imagepolicy": "flux-system:reflector:tag"}
