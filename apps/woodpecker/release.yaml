@@ -50,6 +50,6 @@ spec:
             secretKeyRef:
               name: cnpg-woodpecker-auth
               key: password
-        WOODPECKER_DATABASE_DATASOURCE: "postgres://$(WOODPECKER_DATABASE_USER):$(WOODPECKER_DATABASE_PASSWORD)@woodpecker-cnpg.cnpg-system.svc.cluster.local:5432/woodpecker?sslmode=disable"
+        WOODPECKER_DATABASE_DATASOURCE: "postgres://$(WOODPECKER_DATABASE_USER):$(WOODPECKER_DATABASE_PASSWORD)@cnpg-cluster.cnpg-system.svc.cluster.local:5432/woodpecker?sslmode=disable"
       extraSecretNamesForEnvFrom:
         - woodpecker-github
