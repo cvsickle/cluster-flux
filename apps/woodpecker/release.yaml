@@ -39,5 +39,17 @@ spec:
         WOODPECKER_OPEN: false
         WOODPECKER_ADMIN: cvsickle
         WOODPECKER_GITHUB: true
+        WOODPECKER_DATABASE_DRIVER: postgres
+        WOODPECKER_DATABASE_USER:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-woodpecker-auth
+              key: username
+        WOODPECKER_DATABASE_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-woodpecker-auth
+              key: password
+        WOODPECKER_DATABASE_DATASOURCE: "postgres://$(WOODPECKER_DATABASE_USER):$(WOODPECKER_DATABASE_PASSWORD)@woodpecker-cnpg.cnpg-system.svc.cluster.local:5432/woodpecker?sslmode=disable"
       extraSecretNamesForEnvFrom:
         - woodpecker-github
