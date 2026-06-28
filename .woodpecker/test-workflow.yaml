@@ -8,5 +8,6 @@ steps:
     commands:
       - echo "Woodpecker CI is working!"
       - echo "Current user is $(whoami)"
+      - echo "This is just a test"
       - uname -a
       - pwd
