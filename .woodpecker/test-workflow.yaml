@@ -7,5 +7,6 @@ steps:
     image: busybox
     commands:
       - echo "Woodpecker CI is working!"
+      - echo "Current user is $(whoami)"
       - uname -a
       - pwd
