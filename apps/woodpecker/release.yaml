@@ -14,11 +14,7 @@ spec:
       enabled: true
       replicaCount: 2
       persistence:
-        enabled: true
-        size: 10Gi
-        storageClass: longhorn
-        accessModes:
-          - ReadWriteOnce
+        enabled: false
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -35,6 +31,10 @@ spec:
               topologyKey: kubernetes.io/hostname
       env:
         WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
+        WOODPECKER_GRPC_KEEPALIVE_TIME: "30s"
+        WOODPECKER_GRPC_KEEPALIVE_TIMEOUT: "20s"
+      extraSecretNamesForEnvFrom:
+        - woodpecker-shared
     server:
       enabled: true
       statefulSet:
@@ -67,6 +67,7 @@ spec:
         WOODPECKER_OPEN: false
         WOODPECKER_ADMIN: cvsickle
         WOODPECKER_GITHUB: true
+        WOODPECKER_GRPC_KEEPALIVE_MIN_TIME: "10s"
         WOODPECKER_DATABASE_DRIVER: postgres
         DATABASE_USER:
           valueFrom:
@@ -80,4 +81,5 @@ spec:
               key: password
         WOODPECKER_DATABASE_DATASOURCE: "postgres://$(DATABASE_USER):$(DATABASE_PASSWORD)@cnpg-cluster-rw.cnpg-system.svc.cluster.local:5432/woodpecker?sslmode=disable"
       extraSecretNamesForEnvFrom:
+        - woodpecker-shared
         - woodpecker-github
