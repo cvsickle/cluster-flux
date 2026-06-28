@@ -15,11 +15,10 @@ spec:
       replicaCount: 2
       persistence:
         enabled: true
-        # existingClaim: woodpecker-agent
         size: 10Gi
         storageClass: longhorn
         accessModes:
-          - ReadWriteMany
+          - ReadWriteOnce
       env:
         WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
     server:
@@ -31,7 +30,6 @@ spec:
         type: RollingUpdate
       persistence:
         enabled: true
-        # existingClaim: woodpecker-server
         size: 10Gi
         storageClass: longhorn
         accessModes:
