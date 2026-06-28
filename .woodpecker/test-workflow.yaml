@@ -1,0 +1,11 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  check-environment:
+    image: busybox
+    commands:
+      - echo "Woodpecker CI is working!"
+      - uname -a
+      - pwd
