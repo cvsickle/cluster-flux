@@ -19,6 +19,20 @@ spec:
         storageClass: longhorn
         accessModes:
           - ReadWriteOnce
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - woodpecker
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - agent
+              topologyKey: kubernetes.io/hostname
       env:
         WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
     server:
@@ -34,6 +48,20 @@ spec:
         storageClass: longhorn
         accessModes:
           - ReadWriteMany
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - woodpecker
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - server
+              topologyKey: kubernetes.io/hostname
       env:
         WOODPECKER_HOST: https://woodpecker.cvsickle.com
         WOODPECKER_OPEN: false
