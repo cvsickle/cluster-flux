@@ -13,6 +13,8 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
  |
  ├── .github       # GitHub actions
  |
+ ├── .woodpecker   # Woodpecker CI actions
+ |
  ├── apps             # Apps Folder:
  │   ├── application1 # All top-level applications
  │   ├── application2 # running in the cluster are
