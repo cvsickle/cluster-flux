@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: awx-operator
+  namespace: awx
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: awx-operator
+      version: '>=3.0.0 <4.0.0' 
+      sourceRef:
+        kind: HelmRepository
+        name: awx-operator
+        namespace: awx
+      interval: 5m
+  install:
+    crds: Create # Only create on initial install to prevent upgrade locks
+  upgrade:
+    crds: Create # Defer upgrade management to manual/Kustomize server-side applies
+  values:
+    # Explicitly enable the AWX deployment CR via the Helm chart
+    AWX:
+      enabled: true
+    # The image tag below will be automatically updated by your ImagePolicy
+    operator-controller-containers:
+      awx-manager:
+        image: quay.io/ansible/awx-operator
+        tag: 2.19.0 # {"$imagepolicy": "flux-system:awx-operator:tag"}
