@@ -7,6 +7,7 @@ metadata:
 data:
   config.yaml: |
     model_list:
+
       - model_name: claude-haiku-4-5
         litellm_params:
           model: anthropic/claude-haiku-4-5
@@ -15,6 +16,7 @@ data:
           max_tokens: 32000
         model_info:
           health_check_max_tokens: 2048
+
       - model_name: claude-sonnet-4-5
         litellm_params:
           model: anthropic/claude-sonnet-4-5
@@ -23,11 +25,13 @@ data:
           max_tokens: 64000
         model_info:
           health_check_max_tokens: 4096
+
       - model_name: claude-sonnet-4-6
         litellm_params:
           model: anthropic/claude-sonnet-4-6
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
+
       - model_name: claude-sonnet-5
         litellm_params:
           model: anthropic/claude-sonnet-5
@@ -35,6 +39,7 @@ data:
           thinking:
             type: adaptive
             display: summarized
+
       - model_name: claude-opus-4-5
         litellm_params:
           model: anthropic/claude-opus-4-5
@@ -43,11 +48,13 @@ data:
           max_tokens: 64000
         model_info:
           health_check_max_tokens: 4096
+
       - model_name: claude-opus-4-6
         litellm_params:
           model: anthropic/claude-opus-4-6
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
+
       - model_name: claude-opus-4-8
         litellm_params:
           model: anthropic/claude-opus-4-8
@@ -55,6 +62,7 @@ data:
           thinking:
             type: adaptive
             display: summarized
+
       - model_name: ornith
         litellm_params:
           model: "ollama_chat/ornith:9b"
@@ -63,6 +71,7 @@ data:
         litellm_params:
           model: "ollama_chat/ornith:9b"
           api_base: "http://10.69.1.70:11434"
+
     general_settings:
       store_model_in_db: True
       store_prompts_in_spend_logs: True
@@ -71,6 +80,7 @@ data:
           litellm_user_role: internal_user
         - header_name: X-OpenWebUI-User-Email
           litellm_user_role: customer
+
     litellm_settings:
       drop_params: True
       modify_params: True
@@ -79,6 +89,7 @@ data:
         type: redis
         host: litellm-redis-master.litellm.svc.cluster.local
         port: 6379
+        
     router_settings:
       routing_strategy: simple-shuffle
       redis_host: litellm-redis-master.litellm.svc.cluster.local
