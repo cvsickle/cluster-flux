@@ -71,20 +71,23 @@ spec:
               kind: Deployment
               name: litellm
             patch: |
+              # Inject initContainer targeting LiteLLM's internal Python 3.13 venv path
               - op: add
                 path: /spec/template/spec/initContainers
                 value:
                   - name: install-pillow
-                    image: python:3.11-slim
-                    command: ["pip", "install", "Pillow", "--target", "/shared-libs"]
+                    image: python:3.13-slim
+                    command: ["/app/.venv/bin/pip", "install", "Pillow", "--target", "/shared-libs"]
                     volumeMounts:
                       - name: shared-libs
                         mountPath: /shared-libs
+              # Overlap the site-packages inside LiteLLM's active virtual environment
               - op: add
                 path: /spec/template/spec/containers/0/volumeMounts
                 value:
                   - name: shared-libs
-                    mountPath: /usr/local/lib/python3.11/site-packages
+                    mountPath: /app/.venv/lib/python3.13/site-packages
+              # Declare the shared temporary directory volume
               - op: add
                 path: /spec/template/spec/volumes
                 value:
