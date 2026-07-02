@@ -13,12 +13,18 @@ data:
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: low
           max_tokens: 32000
+        model_info:
+          health_check_params:
+            max_tokens: 2048
       - model_name: claude-sonnet-4-5
         litellm_params:
           model: anthropic/claude-sonnet-4-5
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
           max_tokens: 64000
+        model_info:
+          health_check_params:
+            max_tokens: 4096
       - model_name: claude-sonnet-4-6
         litellm_params:
           model: anthropic/claude-sonnet-4-6
@@ -37,6 +43,9 @@ data:
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
           max_tokens: 64000
+        model_info:
+          health_check_params:
+            max_tokens: 4096
       - model_name: claude-opus-4-6
         litellm_params:
           model: anthropic/claude-opus-4-6
