@@ -36,6 +36,7 @@ spec:
     masterkeySecretKey: LITELLM_MASTER_KEY
     environmentSecrets:
       - litellm-master-key
+      - anthropic-api-key
     proxyConfigMap:
       create: false
       name: litellm
