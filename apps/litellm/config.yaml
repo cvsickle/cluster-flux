@@ -7,6 +7,14 @@ metadata:
 data:
   config.yaml: |
     model_list:
+      - model_name: ornith
+        litellm_params:
+          model: "ollama_chat/ornith:9b"
+          api_base: "http://10.59.1.52:11434"
+      - model_name: ornith
+        litellm_params:
+          model: "ollama_chat/ornith:9b"
+          api_base: "http://10.59.1.70:11434"
     general_settings:
       store_model_in_db: True
       store_prompts_in_spend_logs: True
