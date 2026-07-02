@@ -63,3 +63,30 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1.5Gi"
+  # --- FORCE INJECT INITCONTAINER VIA FLUX POST-RENDERER ---
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: litellm
+            patch: |
+              - op: add
+                path: /spec/template/spec/initContainers
+                value:
+                  - name: install-pillow
+                    image: python:3.11-slim
+                    command: ["pip", "install", "Pillow", "--target", "/shared-libs"]
+                    volumeMounts:
+                      - name: shared-libs
+                        mountPath: /shared-libs
+              - op: add
+                path: /spec/template/spec/containers/0/volumeMounts
+                value:
+                  - name: shared-libs
+                    mountPath: /usr/local/lib/python3.11/site-packages
+              - op: add
+                path: /spec/template/spec/volumes
+                value:
+                  - name: shared-libs
+                    emptyDir: {}
