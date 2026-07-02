@@ -7,9 +7,41 @@ metadata:
 data:
   config.yaml: |
     model_list:
+      - model_name: claude-haiku-4-5
+        litellm_params:
+          model: anthropic/claude-haiku-4-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: low
+      - model_name: claude-sonnet-4-5
+        litellm_params:
+          model: anthropic/claude-sonnet-4-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: medium
+      - model_name: claude-sonnet-4-6
+        litellm_params:
+          model: anthropic/claude-sonnet-4-6
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: medium
       - model_name: claude-sonnet-5
         litellm_params:
           model: anthropic/claude-sonnet-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          thinking:
+            type: adaptive
+            display: summarized
+      - model_name: claude-opus-4-5
+        litellm_params:
+          model: anthropic/claude-opus-4-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: medium
+      - model_name: claude-opus-4-6
+        litellm_params:
+          model: anthropic/claude-opus-4-6
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: medium
+      - model_name: claude-opus-4-8
+        litellm_params:
+          model: anthropic/claude-opus-4-8
           api_key: os.environ/ANTHROPIC_API_KEY
           thinking:
             type: adaptive
