@@ -25,13 +25,11 @@ data:
           max_tokens: 64000
         model_info:
           health_check_max_tokens: 4096
-
       - model_name: claude-sonnet-4-6
         litellm_params:
           model: anthropic/claude-sonnet-4-6
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
-
       - model_name: claude-sonnet-5
         litellm_params:
           model: anthropic/claude-sonnet-5
@@ -48,13 +46,11 @@ data:
           max_tokens: 64000
         model_info:
           health_check_max_tokens: 4096
-
       - model_name: claude-opus-4-6
         litellm_params:
           model: anthropic/claude-opus-4-6
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: medium
-
       - model_name: claude-opus-4-8
         litellm_params:
           model: anthropic/claude-opus-4-8
@@ -62,6 +58,48 @@ data:
           thinking:
             type: adaptive
             display: summarized
+
+      - model_name: nomic-embed-text-v2-moe
+        litellm_params:
+          model: ollama/nomic-embed-text-v2-moe:latest
+          api_base: "http://10.69.1.52:11434"
+      - model_name: nomic-embed-text-v2-moe
+        litellm_params:
+          model: ollama/nomic-embed-text-v2-moe:latest
+          api_base: "http://10.69.1.70:11434"
+      
+      - model_name: gpt-oss
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.52:11434"
+      - model_name: gpt-oss
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.70:11434"
+      
+      - model_name: gpt-oss-task
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.52:11434"
+          top_p: 0.5
+          reasoning_effort: low
+      - model_name: gpt-oss-task
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.70:11434"
+          top_p: 0.5
+          reasoning_effort: low
+      
+      - model_name: gpt-oss-deep
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.52:11434"
+          reasoning_effort: high
+      - model_name: gpt-oss-deep
+        litellm_params:
+          model: ollama_chat/gpt-oss:20b
+          api_base: "http://10.69.1.70:11434"
+          reasoning_effort: high
       
       - model_name: minicpm-v
         litellm_params:
