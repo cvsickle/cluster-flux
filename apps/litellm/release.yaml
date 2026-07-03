@@ -64,6 +64,9 @@ spec:
       limits:
         memory: "1.5Gi"
     # Additional Arguments
+    command:
+      - /bin/sh
+      - -ec
     args:
       - |
         /app/.venv/bin/python -m ensurepip --upgrade
