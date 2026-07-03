@@ -63,3 +63,10 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1.5Gi"
+    # Additional Arguments
+    args:
+      - |
+        /app/.venv/bin/python -m ensurepip --upgrade
+        /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
+        /app/.venv/bin/python -m pip install --no-cache-dir Pillow
+        exec /app/.venv/bin/litellm --config=/app/config.yaml
