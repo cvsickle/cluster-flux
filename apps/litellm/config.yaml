@@ -63,10 +63,14 @@ data:
         litellm_params:
           model: ollama/nomic-embed-text-v2-moe:latest
           api_base: "http://10.69.1.52:11434"
+        model_info:
+          mode: embedding
       - model_name: nomic-embed-text-v2-moe
         litellm_params:
           model: ollama/nomic-embed-text-v2-moe:latest
           api_base: "http://10.69.1.70:11434"
+        model_info:
+          mode: embedding
       
       - model_name: gpt-oss
         litellm_params:
