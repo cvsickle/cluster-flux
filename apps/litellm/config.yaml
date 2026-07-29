@@ -142,7 +142,7 @@ data:
           api_base: "http://10.69.1.70:11434"
 
     general_settings:
-      store_model_in_db: True
+      store_model_in_db: False
       store_prompts_in_spend_logs: True
       user_header_mappings:
         - header_name: X-OpenWebUI-User-Id
