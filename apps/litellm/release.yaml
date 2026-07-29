@@ -67,9 +67,9 @@ spec:
     command:
       - /bin/sh
       - -ec
-    args:
-      - |
-        /app/.venv/bin/python -m ensurepip --upgrade
-        /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
-        /app/.venv/bin/python -m pip install --no-cache-dir Pillow
-        exec /app/.venv/bin/litellm --config=/etc/litellm/config.yaml
+    # args:
+    #   - |
+    #     /app/.venv/bin/python -m ensurepip --upgrade
+    #     /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
+    #     /app/.venv/bin/python -m pip install --no-cache-dir Pillow
+    #     exec /app/.venv/bin/litellm --config=/etc/litellm/config.yaml
