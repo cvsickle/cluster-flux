@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1
-kind: ImageRepository
-metadata:
-  name: linkstack
-  namespace: flux-system
-spec:
-  image: ghcr.io/adnoctem/helm/linkstack
-  interval: 1h
