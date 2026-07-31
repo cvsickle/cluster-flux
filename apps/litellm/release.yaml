@@ -23,10 +23,14 @@ spec:
                   operator: In
                   values:
                     - litellm
+                - key: batch.kubernetes.io/job-name
+                  operator: DoesNotExist
             topologyKey: kubernetes.io/hostname
     pdb:
       enabled: true
       maxUnavailable: 1
+    startupProbe:
+      failureThreshold: 60
     # Service
     service:
       type: ClusterIP
