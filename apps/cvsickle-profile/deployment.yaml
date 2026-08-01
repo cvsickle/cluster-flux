@@ -18,7 +18,7 @@ spec:
         - name: forgejo-registry
       containers:
         - name: profile
-          image: 0.1.7 # {"$imagepolicy": "flux-system:cvsickle-profile:tag"}
+          image: 0.1.8 # {"$imagepolicy": "flux-system:cvsickle-profile:tag"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
