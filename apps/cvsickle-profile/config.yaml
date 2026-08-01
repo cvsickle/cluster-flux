@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: profile-links
+  namespace: cvsickle-profile
+data:
+  links.json: |
+    {
+      "name": "Corey Van Sickle",
+      "tagline": "Engineer | Homelabber | Wannabe Developer | DevOps Enthusiast | Standard Nerd",
+      "links": [
+        {
+          "id": "github",
+          "label": "GitHub",
+          "url": "https://github.com/cvsickle",
+          "icon": "icons/github.svg",
+          "color": "#a6e3a1"
+        },
+        {
+          "id": "codeberg",
+          "label": "Codeberg",
+          "url": "https://codeberg.org/cvsickle",
+          "icon": "icons/codeberg.png",
+          "color": "#74c7ec"
+        },
+        {
+          "id": "forgejo",
+          "label": "Forgejo",
+          "url": "https://git.cvsickle.com/cvsickle",
+          "icon": "icons/forgejo.png",
+          "color": "#fab387"
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "url": "mailto:vansicklecorey@gmail.com",
+          "icon": "icons/email.png",
+          "color": "#f38ba8"
+        }
+      ]
+    }
