@@ -23,11 +23,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true
           resources:
             requests:
               cpu: 25m
