@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: cvsickle-profile
+  namespace: flux-system
+spec:
+  image: git.cvsickle.com/cvsickle/profile
+  interval: 5m

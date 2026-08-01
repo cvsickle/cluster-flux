@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: cvsickle-profile
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cvsickle-profile
+  policy:
+    semver:
+      range: '>=0.1.0'
