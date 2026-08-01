@@ -17,3 +17,19 @@ spec:
       services:
         - name: profile
           port: 8080
+    - match: Host(`www.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: profile
+          port: 8080
+      middlewares:
+        - name: default-headers
+          namespace: default
+    - match: Host(`cvsickle.com`)
+      kind: Rule
+      services:
+        - name: profile
+          port: 8080
+      middlewares:
+        - name: default-headers
+          namespace: default
