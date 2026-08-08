@@ -14,7 +14,7 @@ spec:
   values:
     # Migration
     migrationJob:
-      enabled: false
+      enabled: true
     # High Availability
     replicaCount: 1
     affinity:
