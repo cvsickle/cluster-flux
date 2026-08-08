@@ -176,5 +176,5 @@ data:
         litellm_params:
           guardrail: headroom
           mode: pre_call
-          api_base: http://headroom.litellm.svc.cluster.local
+          api_base: http://headroom.litellm.svc.cluster.local:8787
           default_on: true
