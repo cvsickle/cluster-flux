@@ -43,11 +43,11 @@ flux get kustomizations --watch
 ### Reconcile any changes
 
 ```bash
-# Apps
-flux reconcile kustomization cluster-apps --with-source
-
 # Cluster
 flux reconcile kustomization flux-system --with-source
+
+# Apps
+flux reconcile kustomization cluster-apps --with-source
 
 # Infrastructure
 flux reconcile kustomization cluster-infrastructure --with-source
@@ -87,7 +87,7 @@ The command below will install Flux on the cluster and reference the repository.
 
 ```bash
 flux bootstrap github \
-  --components-extra=image-reflector-controller,image-automation-controller \
+  --components-extra=image-reflector-controller,image-automation-controller,source-watcher \
   --owner=cvsickle \
   --repository=cluster-flux \
   --branch=main \
