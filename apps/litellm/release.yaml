@@ -13,7 +13,7 @@ spec:
     namespace: litellm
   values:
     # High Availability
-    replicaCount: 2
+    replicaCount: 1
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
