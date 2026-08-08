@@ -170,3 +170,11 @@ data:
       routing_strategy: simple-shuffle
       redis_host: litellm-redis-master.litellm.svc.cluster.local
       redis_port: 6379
+    
+    guardrails:
+      - guardrail_name: headroom-compression
+        litellm_params:
+          guardrail: headroom
+          mode: pre_call
+          api_base: headroom.litellm.svc.cluster.local
+          default_on: true
