@@ -12,6 +12,9 @@ spec:
     name: litellm
     namespace: litellm
   values:
+    # Migration
+    migrationJob:
+      enabled: false
     # High Availability
     replicaCount: 1
     affinity:
@@ -67,13 +70,13 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1.5Gi"
-    # Additional Arguments
-    command:
-      - /bin/sh
-      - -ec
-    args:
-      - |
-        /app/.venv/bin/python -m ensurepip --upgrade
-        /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
-        /app/.venv/bin/python -m pip install --no-cache-dir Pillow
-        exec /app/.venv/bin/litellm --config=/etc/litellm/config.yaml
+    # # Additional Arguments
+    # command:
+    #   - /bin/sh
+    #   - -ec
+    # args:
+    #   - |
+    #     /app/.venv/bin/python -m ensurepip --upgrade
+    #     /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
+    #     /app/.venv/bin/python -m pip install --no-cache-dir Pillow
+    #     exec /app/.venv/bin/litellm --config=/etc/litellm/config.yaml
