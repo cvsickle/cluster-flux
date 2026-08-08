@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: headroom
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: headroom
+  policy:
+    semver:
+      range: '>=0.33.0'
