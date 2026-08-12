@@ -160,6 +160,7 @@ data:
     litellm_settings:
       drop_params: True
       modify_params: True
+      enable_anthropic_prompt_caching: true
       cache: True
       cache_params:
         type: redis
