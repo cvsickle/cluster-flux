@@ -34,6 +34,15 @@ data:
         litellm_params:
           model: anthropic/claude-sonnet-5
           api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: medium
+          thinking:
+            type: adaptive
+            display: summarized
+      - model_name: claude-sonnet-5-low
+        litellm_params:
+          model: anthropic/claude-sonnet-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: low
           thinking:
             type: adaptive
             display: summarized
@@ -62,6 +71,14 @@ data:
         litellm_params:
           model: anthropic/claude-opus-5
           api_key: os.environ/ANTHROPIC_API_KEY
+          thinking:
+            type: adaptive
+            display: summarized
+      - model_name: claude-opus-5-low
+        litellm_params:
+          model: anthropic/claude-opus-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: low
           thinking:
             type: adaptive
             display: summarized
