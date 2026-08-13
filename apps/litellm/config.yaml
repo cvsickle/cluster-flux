@@ -82,6 +82,35 @@ data:
           thinking:
             type: adaptive
             display: summarized
+      
+      - model_name: claude-auto-4-5
+        litellm_params:
+          model: auto_router/complexity_router
+          complexity_router_config:
+            tiers:
+              SIMPLE: claude-haiku-4-5
+              MEDIUM: claude-sonnet-4-5
+              COMPLEX: claude-sonnet-4-5
+              REASONING: claude-opus-4-5
+            classifier_type: llm
+            classifier_llm_config:
+              model: claude-haiku-4-5
+            classifier_context_window_size: 0
+          complexity_router_default_model: claude-sonnet-4-5
+      - model_name: claude-auto-5
+        litellm_params:
+          model: auto_router/complexity_router
+          complexity_router_config:
+            tiers:
+              SIMPLE: claude-haiku-4-5
+              MEDIUM: claude-sonnet-5-low
+              COMPLEX: claude-opus-5-low
+              REASONING: claude-opus-5
+            classifier_type: llm
+            classifier_llm_config:
+              model: claude-haiku-4-5
+            classifier_context_window_size: 0
+          complexity_router_default_model: claude-sonnet-5-low
 
       - model_name: nomic-embed-text-v2-moe
         litellm_params:
