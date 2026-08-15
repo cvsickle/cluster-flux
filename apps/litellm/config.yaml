@@ -112,9 +112,7 @@ data:
               MEDIUM: claude-sonnet-4-5
               COMPLEX: claude-sonnet-4-5
               REASONING: claude-opus-4-5
-            classifier_type: llm
-            classifier_llm_config:
-              model: claude-haiku-4-5
+            classifier_type: heuristic
             classifier_context_window_size: 0
           complexity_router_default_model: claude-sonnet-4-5
       - model_name: claude-auto-5
