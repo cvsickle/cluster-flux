@@ -10,7 +10,6 @@ spec:
     name: redis-operator
     namespace: redis-system
   values:
-    redisOperator:
     replicas: 3
     issuer:
       create: false
