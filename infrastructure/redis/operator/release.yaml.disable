@@ -14,7 +14,8 @@ spec:
     issuer:
       create: false
     featureGates:
-      GenerateConfigInInitContainer: false
+      AvoidCommandLinePassword: null
+      GenerateConfigInInitContainer: True
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
