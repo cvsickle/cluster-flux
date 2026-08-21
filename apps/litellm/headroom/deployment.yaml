@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: headroom
-          image: ghcr.io/headroomlabs-ai/headroom:0.36.2 # {"$imagepolicy": "flux-system:headroom"}
+          image: ghcr.io/headroomlabs-ai/headroom:0.36.3 # {"$imagepolicy": "flux-system:headroom"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8787
