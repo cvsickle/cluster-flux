@@ -29,13 +29,6 @@ data:
           output_cost_per_token: 0.000015
         model_info:
           health_check_max_tokens: 4096
-      - model_name: claude-sonnet-4-6
-        litellm_params:
-          model: anthropic/claude-sonnet-4-6
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: medium
-          input_cost_per_token: 0.000003
-          output_cost_per_token: 0.000015
       - model_name: claude-sonnet-5
         litellm_params:
           model: anthropic/claude-sonnet-5
@@ -67,22 +60,6 @@ data:
           output_cost_per_token: 0.000025
         model_info:
           health_check_max_tokens: 4096
-      - model_name: claude-opus-4-6
-        litellm_params:
-          model: anthropic/claude-opus-4-6
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: medium
-          input_cost_per_token: 0.000005
-          output_cost_per_token: 0.000025
-      - model_name: claude-opus-4-8
-        litellm_params:
-          model: anthropic/claude-opus-4-8
-          api_key: os.environ/ANTHROPIC_API_KEY
-          input_cost_per_token: 0.000005
-          output_cost_per_token: 0.000025
-          thinking:
-            type: adaptive
-            display: summarized
       - model_name: claude-opus-5
         litellm_params:
           model: anthropic/claude-opus-5
