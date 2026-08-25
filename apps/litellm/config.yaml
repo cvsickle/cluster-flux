@@ -105,6 +105,48 @@ data:
             classifier_context_window_size: 0
           complexity_router_default_model: claude-sonnet-5-low
 
+      - model_name: grok-4.6-low
+        litellm_params:
+          model: xai/grok-4.6
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: low
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      - model_name: grok-4.6-medium
+        litellm_params:
+          model: xai/grok-4.6
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: medium
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      - model_name: grok-4.6-high
+        litellm_params:
+          model: xai/grok-4.6
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: high
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      - model_name: grok-4.6-xhigh
+        litellm_params:
+          model: xai/grok-4.6
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: xhigh
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      
+      - model_name: grok-4.6
+        litellm_params:
+          model: auto_router/complexity_router
+          complexity_router_config:
+            tiers:
+              SIMPLE: grok-4.6-low
+              MEDIUM: grok-4.6-medium
+              COMPLEX: grok-4.6-high
+              REASONING: grok-4.6-xhigh
+            classifier_type: heuristic
+            classifier_context_window_size: 0
+          complexity_router_default_model: grok-4.6-medium
+
       - model_name: nomic-embed-text-v2-moe
         litellm_params:
           model: ollama/nomic-embed-text-v2-moe:latest
