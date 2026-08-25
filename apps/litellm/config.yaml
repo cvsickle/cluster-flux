@@ -150,39 +150,6 @@ data:
           model: ollama_chat/llama3.2:3b
           api_base: "http://10.69.1.70:11434"
       
-      - model_name: gpt-oss
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.52:11434"
-      - model_name: gpt-oss
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.70:11434"
-      
-      - model_name: gpt-oss-task
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.52:11434"
-          top_p: 0.5
-          reasoning_effort: low
-      - model_name: gpt-oss-task
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.70:11434"
-          top_p: 0.5
-          reasoning_effort: low
-      
-      - model_name: gpt-oss-deep
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.52:11434"
-          reasoning_effort: high
-      - model_name: gpt-oss-deep
-        litellm_params:
-          model: ollama_chat/gpt-oss:20b
-          api_base: "http://10.69.1.70:11434"
-          reasoning_effort: high
-      
       - model_name: minicpm-v
         litellm_params:
           model: ollama_chat/minicpm-v4.5:8b
