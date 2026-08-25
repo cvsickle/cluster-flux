@@ -44,6 +44,7 @@ spec:
     environmentSecrets:
       - litellm-master-key
       - anthropic-api-key
+      - xai-api-key
     proxyConfigMap:
       create: false
       name: litellm
