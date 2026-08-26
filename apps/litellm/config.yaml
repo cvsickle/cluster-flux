@@ -153,6 +153,11 @@ data:
             classifier_type: heuristic
             classifier_context_window_size: 0
           complexity_router_default_model: grok-4.6-medium
+      
+      - model_name: grok-imagine-image-2.0
+        litellm_params:
+          model: xai/grok-imagine-image-2.0
+          api_key: os.environ/XAI_API_KEY
 
       - model_name: nomic-embed-text-v2-moe
         litellm_params:
