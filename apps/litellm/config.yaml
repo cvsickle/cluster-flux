@@ -104,6 +104,13 @@ data:
             classifier_type: heuristic
             classifier_context_window_size: 0
           complexity_router_default_model: claude-sonnet-5-low
+      
+      - model_name: grok-build-0.1
+        litellm_params:
+          model: xai/grok-build-0.1
+          api_key: os.environ/XAI_API_KEY
+          input_cost_per_token: 0.000001
+          output_cost_per_token: 0.000002
 
       - model_name: grok-4.6-low
         litellm_params:
