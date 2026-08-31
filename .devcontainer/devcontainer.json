@@ -4,7 +4,7 @@
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
-            "FLUX_VERSION": "2.9.4",
+            "FLUX_VERSION": "2.9.5",
             "KUBECTL_VERSION": "1.36.3",
             "HELM_VERSION": "4.2.0",
             "K9S_VERSION": "0.51.0",
