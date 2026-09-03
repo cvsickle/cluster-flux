@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/ot-container-kit/charts/redis-cluster
   ref:
-    semver: 0.17.5 # {"$imagepolicy": "flux-system:redis-cluster:tag"}
+    semver: 0.17.6 # {"$imagepolicy": "flux-system:redis-cluster:tag"}
