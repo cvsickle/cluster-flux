@@ -66,11 +66,11 @@ spec:
         size: 4Gi
         storageClassName: longhorn
     # User Id
-    # securityContext:
-    #   runAsUser: 1052
-    #   runAsGroup: 100
-    #   fsGroup: 100
-    #   runAsNonRoot: true
+    securityContext:
+      runAsUser: 1052
+      runAsGroup: 100
+      fsGroup: 100
+      runAsNonRoot: true
     # Environment
     env:
       - name: TZ
