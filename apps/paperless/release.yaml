@@ -70,14 +70,15 @@ spec:
       runAsUser: 1052
       runAsGroup: 100
       fsGroup: 100
+      runAsNonRoot: true
     # Environment
     env:
       - name: TZ
         value: America/New_York
-      # - name: USERMAP_UID
-      #   value: 1052
-      # - name: USERMAP_GID
-      #   value: 100
+      - name: USERMAP_UID
+        value: 1052
+      - name: USERMAP_GID
+        value: 100
       - name: PAPERLESS_DBHOST
         value: cnpg-cluster-rw.cnpg-system.svc.cluster.local
       - name: PAPERLESS_DBNAME
