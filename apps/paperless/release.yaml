@@ -13,7 +13,7 @@ spec:
     # High Availability
     controller:
       kind: Deployment
-      replicas: 2
+      replicas: 1
       updateStrategy:
         type: RollingUpdate
         rollingUpdate:
