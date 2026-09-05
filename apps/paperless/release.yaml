@@ -97,6 +97,8 @@ spec:
         value: "https://paperless.cvsickle.com,https://paperless.local.cvsickle.com"
       - name: PAPERLESS_TRUSTED_PROXIES
         value: "10.69.1.100,10.69.100.100,10.69.100.101"
+      - name: PAPERLESS_ALLAUTH_TRUSTED_CLIENT_IP_HEADER
+        value: "X-Real-IP"
       - name: PAPERLESS_CONSUMER_POLLING
         value: "30"
       - name: PAPERLESS_TIKA_ENABLED
