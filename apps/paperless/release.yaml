@@ -75,10 +75,6 @@ spec:
     env:
       - name: TZ
         value: America/New_York
-      # - name: USERMAP_UID
-      #   value: 1052
-      # - name: USERMAP_GID
-      #   value: 100
       - name: PAPERLESS_DBHOST
         value: cnpg-cluster-rw.cnpg-system.svc.cluster.local
       - name: PAPERLESS_DBNAME
@@ -109,11 +105,6 @@ spec:
         value: http://gotenburg.external-apps.svc.cluster.local:3000
       - name: PAPERLESS_TIKA_ENDPOINT
         value: http://tika.external-apps.svc.cluster.local:9998
-      # - name: PAPERLESS_SECRET_KEY
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: paperless-secret-key
-      #       key: PAPERLESS_SECRET_KEY
     # Secret Key
     secret:
       create: false
