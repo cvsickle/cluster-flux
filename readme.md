@@ -68,6 +68,7 @@ This repo uses a dev container defined in the `.devcontainer` directory. The con
 - flux
 - k9s
 - longhornctl
+- sops
 
 Using the container requires 3 mounts.
 
