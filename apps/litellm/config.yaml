@@ -79,6 +79,25 @@ data:
           thinking:
             type: adaptive
             display: summarized
+      - model_name: claude-opus-5-5
+        litellm_params:
+          model: anthropic/claude-opus-5-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          input_cost_per_token: 0.000004
+          output_cost_per_token: 0.000020
+          thinking:
+            type: adaptive
+            display: summarized
+      - model_name: claude-opus-5-5-low
+        litellm_params:
+          model: anthropic/claude-opus-5-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          reasoning_effort: low
+          input_cost_per_token: 0.000004
+          output_cost_per_token: 0.000020
+          thinking:
+            type: adaptive
+            display: summarized
       
       - model_name: claude-auto-4-5
         litellm_params:
@@ -89,8 +108,11 @@ data:
               MEDIUM: claude-sonnet-4-5
               COMPLEX: claude-sonnet-4-5
               REASONING: claude-opus-4-5
-            classifier_type: heuristic
+            classifier_type: heuristic_v2
             classifier_context_window_size: 0
+            classification_mode: every_request
+            session_affinity: false
+            return_raw_model_name: true
           complexity_router_default_model: claude-sonnet-4-5
       - model_name: claude-auto-5
         litellm_params:
@@ -99,10 +121,13 @@ data:
             tiers:
               SIMPLE: claude-haiku-4-5
               MEDIUM: claude-sonnet-5-low
-              COMPLEX: claude-opus-5-low
-              REASONING: claude-opus-5
-            classifier_type: heuristic
+              COMPLEX: claude-opus-5-5-low
+              REASONING: claude-opus-5-5
+            classifier_type: heuristic_v2
             classifier_context_window_size: 0
+            classification_mode: every_request
+            session_affinity: false
+            return_raw_model_name: true
           complexity_router_default_model: claude-sonnet-5-low
       
       - model_name: grok-build-0.1
@@ -133,11 +158,25 @@ data:
           reasoning_effort: high
           input_cost_per_token: 0.000002
           output_cost_per_token: 0.000006
-      - model_name: grok-4.6-xhigh
+      - model_name: grok-4.7-low
         litellm_params:
-          model: xai/grok-4.6
+          model: xai/grok-4.7
           api_key: os.environ/XAI_API_KEY
-          reasoning_effort: xhigh
+          reasoning_effort: low
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      - model_name: grok-4.7-medium
+        litellm_params:
+          model: xai/grok-4.7
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: medium
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
+      - model_name: grok-4.7-high
+        litellm_params:
+          model: xai/grok-4.7
+          api_key: os.environ/XAI_API_KEY
+          reasoning_effort: high
           input_cost_per_token: 0.000002
           output_cost_per_token: 0.000006
       
@@ -149,10 +188,28 @@ data:
               SIMPLE: grok-4.6-low
               MEDIUM: grok-4.6-medium
               COMPLEX: grok-4.6-high
-              REASONING: grok-4.6-xhigh
-            classifier_type: heuristic
+              REASONING: grok-4.6-high
+            classifier_type: heuristic_v2
             classifier_context_window_size: 0
+            classification_mode: every_request
+            session_affinity: false
+            return_raw_model_name: true
           complexity_router_default_model: grok-4.6-medium
+      - model_name: grok-4.7
+        litellm_params:
+          model: auto_router/complexity_router
+          complexity_router_config:
+            tiers:
+              SIMPLE: grok-4.7-low
+              MEDIUM: grok-4.7-medium
+              COMPLEX: grok-4.7-high
+              REASONING: grok-4.7-high
+            classifier_type: heuristic_v2
+            classifier_context_window_size: 0
+            classification_mode: every_request
+            session_affinity: false
+            return_raw_model_name: true
+          complexity_router_default_model: grok-4.7-medium
       
       - model_name: grok-imagine-image-2.0
         litellm_params:
