@@ -108,7 +108,7 @@ data:
               MEDIUM: claude-sonnet-4-5
               COMPLEX: claude-sonnet-4-5
               REASONING: claude-opus-4-5
-            classifier_type: heuristic_v2
+            classifier_type: heuristic
             classifier_context_window_size: 0
             classification_mode: every_request
             session_affinity: false
@@ -123,7 +123,7 @@ data:
               MEDIUM: claude-sonnet-5-low
               COMPLEX: claude-opus-5-5-low
               REASONING: claude-opus-5-5
-            classifier_type: heuristic_v2
+            classifier_type: heuristic
             classifier_context_window_size: 0
             classification_mode: every_request
             session_affinity: false
@@ -189,7 +189,7 @@ data:
               MEDIUM: grok-4.6-medium
               COMPLEX: grok-4.6-high
               REASONING: grok-4.6-high
-            classifier_type: heuristic_v2
+            classifier_type: heuristic
             classifier_context_window_size: 0
             classification_mode: every_request
             session_affinity: false
@@ -204,7 +204,7 @@ data:
               MEDIUM: grok-4.7-medium
               COMPLEX: grok-4.7-high
               REASONING: grok-4.7-high
-            classifier_type: heuristic_v2
+            classifier_type: heuristic
             classifier_context_window_size: 0
             classification_mode: every_request
             session_affinity: false
