@@ -110,9 +110,6 @@ data:
               REASONING: claude-opus-4-5
             classifier_type: heuristic
             classifier_context_window_size: 0
-            classification_mode: every_request
-            session_affinity: false
-            return_raw_model_name: true
           complexity_router_default_model: claude-sonnet-4-5
       - model_name: claude-auto-5
         litellm_params:
@@ -125,9 +122,6 @@ data:
               REASONING: claude-opus-5-5
             classifier_type: heuristic
             classifier_context_window_size: 0
-            classification_mode: every_request
-            session_affinity: false
-            return_raw_model_name: true
           complexity_router_default_model: claude-sonnet-5-low
       
       - model_name: grok-build-0.1
@@ -191,9 +185,6 @@ data:
               REASONING: grok-4.6-high
             classifier_type: heuristic
             classifier_context_window_size: 0
-            classification_mode: every_request
-            session_affinity: false
-            return_raw_model_name: true
           complexity_router_default_model: grok-4.6-medium
       - model_name: grok-4.7
         litellm_params:
@@ -206,9 +197,6 @@ data:
               REASONING: grok-4.7-high
             classifier_type: heuristic
             classifier_context_window_size: 0
-            classification_mode: every_request
-            session_affinity: false
-            return_raw_model_name: true
           complexity_router_default_model: grok-4.7-medium
       
       - model_name: grok-imagine-image-2.0
