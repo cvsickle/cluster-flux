@@ -29,19 +29,28 @@ data:
           output_cost_per_token: 0.000015
         model_info:
           health_check_max_tokens: 4096
-      - model_name: claude-sonnet-5
+      - model_name: claude-sonnet-4-5-low
         litellm_params:
-          model: anthropic/claude-sonnet-5
+          model: anthropic/claude-sonnet-4-5
           api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: medium
+          reasoning_effort: low
+          max_tokens: 64000
+          input_cost_per_token: 0.000003
+          output_cost_per_token: 0.000015
+        model_info:
+          health_check_max_tokens: 4096
+      - model_name: claude-sonnet-5-5
+        litellm_params:
+          model: anthropic/claude-sonnet-5-5
+          api_key: os.environ/ANTHROPIC_API_KEY
           input_cost_per_token: 0.000002
           output_cost_per_token: 0.000010
           thinking:
             type: adaptive
             display: summarized
-      - model_name: claude-sonnet-5-low
+      - model_name: claude-sonnet-5-5-low
         litellm_params:
-          model: anthropic/claude-sonnet-5
+          model: anthropic/claude-sonnet-5-5
           api_key: os.environ/ANTHROPIC_API_KEY
           reasoning_effort: low
           input_cost_per_token: 0.000002
@@ -60,39 +69,10 @@ data:
           output_cost_per_token: 0.000025
         model_info:
           health_check_max_tokens: 4096
-      - model_name: claude-opus-5
-        litellm_params:
-          model: anthropic/claude-opus-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          input_cost_per_token: 0.000005
-          output_cost_per_token: 0.000025
-          thinking:
-            type: adaptive
-            display: summarized
-      - model_name: claude-opus-5-low
-        litellm_params:
-          model: anthropic/claude-opus-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: low
-          input_cost_per_token: 0.000005
-          output_cost_per_token: 0.000025
-          thinking:
-            type: adaptive
-            display: summarized
       - model_name: claude-opus-5-5
         litellm_params:
           model: anthropic/claude-opus-5-5
           api_key: os.environ/ANTHROPIC_API_KEY
-          input_cost_per_token: 0.000004
-          output_cost_per_token: 0.000020
-          thinking:
-            type: adaptive
-            display: summarized
-      - model_name: claude-opus-5-5-low
-        litellm_params:
-          model: anthropic/claude-opus-5-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: low
           input_cost_per_token: 0.000004
           output_cost_per_token: 0.000020
           thinking:
@@ -105,7 +85,7 @@ data:
           complexity_router_config:
             tiers:
               SIMPLE: claude-haiku-4-5
-              MEDIUM: claude-sonnet-4-5
+              MEDIUM: claude-sonnet-4-5-low
               COMPLEX: claude-sonnet-4-5
               REASONING: claude-opus-4-5
             classifier_type: llm
@@ -113,22 +93,26 @@ data:
               model: llama3.2
               timeout_ms: 5000
             classifier_context_window_size: 0
-          complexity_router_default_model: claude-sonnet-4-5
-      - model_name: claude-auto-5
+            classification_mode: every_request
+            return_raw_model_name: true
+          complexity_router_default_model: claude-sonnet-4-5-low
+      - model_name: claude-auto-5-5
         litellm_params:
           model: auto_router/complexity_router
           complexity_router_config:
             tiers:
               SIMPLE: claude-haiku-4-5
-              MEDIUM: claude-sonnet-5-low
-              COMPLEX: claude-opus-5-5-low
+              MEDIUM: claude-sonnet-5-5-low
+              COMPLEX: claude-sonnet-5-5
               REASONING: claude-opus-5-5
             classifier_type: llm
             classifier_llm_config:
               model: llama3.2
               timeout_ms: 5000
             classifier_context_window_size: 0
-          complexity_router_default_model: claude-sonnet-5-low
+            classification_mode: every_request
+            return_raw_model_name: true
+          complexity_router_default_model: claude-sonnet-5-5-low
       
       - model_name: grok-build-0.1
         litellm_params:
@@ -137,27 +121,6 @@ data:
           input_cost_per_token: 0.000001
           output_cost_per_token: 0.000002
 
-      - model_name: grok-4.6-low
-        litellm_params:
-          model: xai/grok-4.6
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: low
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
-      - model_name: grok-4.6-medium
-        litellm_params:
-          model: xai/grok-4.6
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: medium
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
-      - model_name: grok-4.6-high
-        litellm_params:
-          model: xai/grok-4.6
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: high
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
       - model_name: grok-4.7-low
         litellm_params:
           model: xai/grok-4.7
@@ -180,21 +143,6 @@ data:
           input_cost_per_token: 0.000002
           output_cost_per_token: 0.000006
       
-      - model_name: grok-4.6
-        litellm_params:
-          model: auto_router/complexity_router
-          complexity_router_config:
-            tiers:
-              SIMPLE: grok-4.6-low
-              MEDIUM: grok-4.6-medium
-              COMPLEX: grok-4.6-high
-              REASONING: grok-4.6-high
-            classifier_type: llm
-            classifier_llm_config:
-              model: llama3.2
-              timeout_ms: 5000
-            classifier_context_window_size: 0
-          complexity_router_default_model: grok-4.6-medium
       - model_name: grok-4.7
         litellm_params:
           model: auto_router/complexity_router
@@ -209,6 +157,8 @@ data:
               model: llama3.2
               timeout_ms: 5000
             classifier_context_window_size: 0
+            classification_mode: every_request
+            return_raw_model_name: true
           complexity_router_default_model: grok-4.7-medium
       
       - model_name: grok-imagine-image-2.0
