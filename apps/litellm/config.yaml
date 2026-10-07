@@ -18,6 +18,15 @@ data:
           output_cost_per_token: 0.000005
         model_info:
           health_check_max_tokens: 2048
+      - model_name: claude-haiku-5-5
+        litellm_params:
+          model: anthropic/claude-haiku-5-5
+          api_key: os.environ/ANTHROPIC_API_KEY
+          input_cost_per_token: 0.0000001
+          output_cost_per_token: 0.0000005
+          thinking:
+            type: adaptive
+            display: summarized
 
       - model_name: claude-sonnet-4-5
         litellm_params:
@@ -101,7 +110,7 @@ data:
           model: auto_router/complexity_router
           complexity_router_config:
             tiers:
-              SIMPLE: claude-haiku-4-5
+              SIMPLE: claude-haiku-5-5
               MEDIUM: claude-sonnet-5-5-low
               COMPLEX: claude-sonnet-5-5
               REASONING: claude-opus-5-5
