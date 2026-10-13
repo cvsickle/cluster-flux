@@ -43,6 +43,8 @@ spec:
               value: "true"
             - name: HEADROOM_HOST
               value: "0.0.0.0"
+            - name: HEADROOM_PORT
+              value: "8787"
             - name: HEADROOM_ALLOW_UNAUTHENTICATED_BIND
               value: "true"
           resources:
