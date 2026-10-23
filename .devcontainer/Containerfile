@@ -1,15 +1,15 @@
-FROM mcr.microsoft.com/devcontainers/base:resolute
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 ARG TARGETARCH=amd64
 
 # ── Pinned Versions ──────────────────────────────────────────
-ARG FLUX_VERSION=2.8.8
-ARG KUBECTL_VERSION=1.36.1
+ARG FLUX_VERSION=2.9.6
+ARG KUBECTL_VERSION=1.37.1
 ARG HELM_VERSION=4.2.0
 ARG K9S_VERSION=0.51.0
 ARG CNPG_VERSION=1.29.1
-ARG LONGHORNCTL_VERSION=1.11.2
-ARG SOPS_VERSION=3.13.1
+ARG LONGHORNCTL_VERSION=1.12.1
+ARG SOPS_VERSION=3.13.3
 # ─────────────────────────────────────────────────────────────
 
 RUN apt-get update && apt-get install -y \

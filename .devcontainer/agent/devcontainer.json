@@ -1,0 +1,54 @@
+{
+  "name": "k3s Cluster Tools - Agent",
+  "runArgs": [
+    "--name=k3s-cluster-tools-agent"
+  ],
+  "build": {
+    "dockerfile": "../Containerfile",
+    "context": ".."
+  },
+  "initializeCommand": "mkdir -p ${localEnv:HOME}${localEnv:USERPROFILE}/.kube-agent",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube-agent,target=/home/vscode/.kube-agent,type=bind,readonly"
+  ],
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "KUBECONFIG": "/home/vscode/.kube-agent/config"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "timonwong.shellcheck",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "weaveworks.vscode-gitops-tools",
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
+        "Vivswan.litellm-vscode-chat",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "shellcheck.enable": true,
+        "editor.formatOnSave": true,
+        "chat.tools.global.autoApprove": false,
+        "chat.tools.terminal.autoApprove": {
+          "kubectl get": true,
+          "kubectl describe": true,
+          "kubectl logs": true,
+          "kubectl top": true,
+          "flux get": true,
+          "flux logs": true,
+          "flux tree": true,
+          "git status": true,
+          "git diff": true,
+          "git log": true,
+          "/^git\\s+(push|commit|add|stash|reset|checkout|switch|rebase|merge|cherry-pick|tag|clean|restore)\\b/": false,
+          "/^kubectl\\s+(apply|create|delete|patch|edit|scale|drain|cordon|uncordon|exec|rollout|replace|label|annotate)\\b/": false,
+          "/^flux\\s+(reconcile|suspend|resume|delete|create|install|uninstall|bootstrap)\\b/": false,
+          "/^helm\\s+(install|upgrade|uninstall|rollback)\\b/": false,
+          "sops": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "k3s Cluster Tools - Admin",
+  "runArgs": [
+    "--name=k3s-cluster-tools-admin"
+  ],
+  "build": {
+    "dockerfile": "../Containerfile",
+    "context": ".."
+  },
+  "initializeCommand": "mkdir -p ${localEnv:HOME}${localEnv:USERPROFILE}/.kube-agent",
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.kube",
+      "target": "/home/vscode/.kube",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.kube-agent",
+      "target": "/home/vscode/.kube-agent",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh",
+      "target": "/home/vscode/.ssh",
+      "type": "bind"
+    }
+  ],
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "SOPS_AGE_KEY_FILE": "/home/vscode/.ssh/age.agekey"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "timonwong.shellcheck",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "weaveworks.vscode-gitops-tools",
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint"
+      ],
+      "settings": {
+        "shellcheck.enable": true,
+        "editor.formatOnSave": true,
+        // Disables the chat agent, panel, and inline chat features
+        "chat.disableAIFeatures": true,
+        "chat.agent.enabled": false,
+        "chat.commandCenter.enabled": false,
+        // Keeps the inline code completions active globally
+        "github.copilot.enable": {
+          "*": true
+        },
+        "github.copilot.editor.enableAutoCompletions": true
+      }
+    }
+  }
+}
