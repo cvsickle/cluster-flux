@@ -6,7 +6,7 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
 - Codeberg: [https://codeberg.org/cvsickle/cluster-flux](https://codeberg.org/cvsickle/cluster-flux)
 - Forgejo (Mirror): [https://git.cvsickle.com/cvsickle/cluster-flux](https://git.cvsickle.com/cvsickle/cluster-flux)
 
-# Repository Structure
+## Repository Structure
 
 ```bash
  ├── .devcontainer # Dev container definition
@@ -32,7 +32,7 @@ This repository is a Flux CD deployment for a k3s cluster, running on three Beel
      └── service3   # Storage, Ingress, Databases, etc.
 ```
 
-# Reconciliation
+## Reconciliation
 
 ### Watch the Flux Kustomizations
 
@@ -59,7 +59,7 @@ flux reconcile kustomization cluster-infrastructure --with-source
 flux reconcile helmrelease <helmrelease_name> -n <namespace> --with-source --force
 ```
 
-# Local Machine Setup
+## Local Machine Setup
 
 This repo uses a dev container defined in the `.devcontainer` directory. The container contains all the tools required for interacting with the cluster.
 
@@ -76,13 +76,13 @@ Using the container requires 3 mounts.
 - `~/.kube` with a valid kube config for the cluster.
 - `~/.gitconfig` with valid git credentials.
 
-# Create a GitHub Token
+## Create a GitHub Token
 
 The token needs to have **repo** access. I had to create it as a classic token.
 
 [https://github.com/settings/tokens](https://github.com/settings/tokens)
 
-# Bootstrap the Cluster
+## Bootstrap the Cluster
 
 The command below will install Flux on the cluster and reference the repository.
 
@@ -101,7 +101,7 @@ flux check
 kubectl get pods -n flux-system
 ```
 
-# Misc. Commands
+## Misc. Commands
 
 ### Get Helm Chart Versions
 
@@ -109,9 +109,8 @@ kubectl get pods -n flux-system
 helm search repo <reponame>/<chartname> --versions
 ```
 
-# Helpful Things
+## Helpful Things
 
 - [TechnoTim](https://technotim.live/posts/flux-devops-gitops/)'s Demo of Flux ([video](https://www.youtube.com/watch?v=PFLimPh5-wo))
 - [freelens](https://github.com/freelensapp/freelens) - a helpful UI for Kubernetes
 - [k9s](https://k9scli.io/topics/install/) - a CLI UI for Kubernetes
-- Using [Sealed Secrets](https://fluxcd.io/flux/guides/sealed-secrets/) in Flux.
