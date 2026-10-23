@@ -61,7 +61,7 @@ flux reconcile helmrelease <helmrelease_name> -n <namespace> --with-source --for
 
 ## Local Machine Setup
 
-This repo uses a dev container defined in the `.devcontainer` directory. The container contains all the tools required for interacting with the cluster.
+This repo uses two dev container defined in the `.devcontainer` directory. The containers contains all the tools required for interacting with the cluster.
 
 - kubectl (with cnpg plugin)
 - helm
@@ -70,11 +70,28 @@ This repo uses a dev container defined in the `.devcontainer` directory. The con
 - longhornctl
 - sops
 
-Using the container requires 3 mounts.
+### The `admin` container
+
+The `admin` container has unrestricted access to the included tools. GitHub Copilot Chat is disabled in this container, preventing an AI slop agent from having the ability to directly mutate the cluster.
+
+Using the `admin` container requires 2 mounts.
 
 - `~/.ssh` with a valid SSH key for the cluster hosts.
 - `~/.kube` with a valid kube config for the cluster.
-- `~/.gitconfig` with valid git credentials.
+
+### The `agent` container
+
+The `agent` container has read-only access to the included tools. GitHub Copilot Chat is available in this container, allow the agent to have diagnostic tools to read state and configuration from the cluster.
+
+Using the `agent` container requires 1 mount.
+
+- `~/.kube-agent` with a valid kube config for the `agent-readonly` service account in the cluster.
+
+This `agent-readonly` kube config can be generated from the `admin` container by running:
+
+```bash
+.scripts/make-agent-kubeconfig.sh
+```
 
 ## Create a GitHub Token
 
