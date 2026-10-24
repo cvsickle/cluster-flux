@@ -30,6 +30,7 @@
       "settings": {
         "shellcheck.enable": true,
         "editor.formatOnSave": true,
+        "chat.useAgentsMdFile": true,
         "chat.tools.global.autoApprove": false,
         "chat.tools.terminal.autoApprove": {
           "kubectl get": true,
