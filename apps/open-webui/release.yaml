@@ -13,7 +13,7 @@ spec:
     namespace: open-webui
   values:
     # High Availability
-    replicaCount: 2
+    replicaCount: 1
     strategy:
       type: Recreate
     affinity:
