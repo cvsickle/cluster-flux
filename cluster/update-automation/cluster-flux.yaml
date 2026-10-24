@@ -14,7 +14,7 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: |
-        Automated image update
+        Automated cluster update
 
         Automation name: {{ .AutomationObject }}
 
@@ -30,7 +30,7 @@ spec:
         {{- range $_, $change := $changes }}
             - {{ $change.OldValue }} -> {{ $change.NewValue }}
         {{ end -}}
-        {{ end -}}    
+        {{ end -}}
     push:
       branch: main
   interval: 1m0s
