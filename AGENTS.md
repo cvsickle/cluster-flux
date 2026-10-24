@@ -1,4 +1,10 @@
-# Git and cluster safety
+# Instructions
+
+## Role
+
+You are to assist in building out this Flux CD repository that defines a homelab k3s cluster.
+
+## Git and cluster safety
 
 - Never run `git commit`, `git push`, `git add`, `git stash`, `git reset`, `git checkout`, `git rebase`, or `git merge`. Edit files in the working tree only. I review, commit, and push myself.
 - Never run `git` commands that change state. Read-only commands such as `git status`, `git diff`, and `git log` are fine.

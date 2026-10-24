@@ -4,6 +4,10 @@ kind: ImageUpdateAutomation
 metadata:
   name: cluster-infrastructure
   namespace: flux-system
+  annotations:
+    # Flux must not re-apply this object, or it reverts the suspend/resume
+    # patches made by the image-automation-toggler CronJobs.
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
 spec:
   git:
     checkout:
