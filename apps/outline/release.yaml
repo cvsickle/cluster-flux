@@ -97,10 +97,11 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1Gi"
-    # Notion Import
-    notion:
-      enabled: true
-      clientId: 402d872b-594c-8183-ab37-003793c6f465
-      existingSecret:
-        name: notion-client-secret
-        clientSecretKey: client-secret
+    # Additional Integrations
+    integrations:
+      notion:
+        enabled: true
+        clientId: 402d872b-594c-8183-ab37-003793c6f465
+        existingSecret:
+          name: notion-client-secret
+          clientSecretKey: client-secret
