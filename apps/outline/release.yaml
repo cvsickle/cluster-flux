@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: outline
-      version: '>=0.7.3 <1.0.0'
+      version: ">=0.7.3 <1.0.0"
       sourceRef:
         kind: HelmRepository
         name: outline
@@ -97,3 +97,10 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1Gi"
+    # Notion Import
+    notion:
+      enabled: true
+      clientId: 402d872b-594c-8183-ab37-003793c6f465
+      existingSecret:
+        name: notion-client-secret
+        clientSecretKey: client-secret

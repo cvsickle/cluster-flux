@@ -2,7 +2,7 @@
 
 This cluster uses an AGE key to encrypt and decrypt secrets using SOPS.
 
-# Common Commands
+## Common Commands
 
 Create a normal Kubernetes secret.
 
@@ -20,7 +20,7 @@ sops --encrypt --encrypted-regex '^(data|stringData)$' secret.yaml > sops-secret
 rm secret.yaml
 ```
 
-# Setup
+## Setup
 
 SOPS is included in the dev container. To create an AGE key:
 
