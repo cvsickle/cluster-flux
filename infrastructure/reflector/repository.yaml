@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: oci://ghcr.io/emberstack/helm-charts/reflector
   ref:
-    semver: 10.0.69 # {"$imagepolicy": "flux-system:reflector:tag"}
+    semver: 10.0.70 # {"$imagepolicy": "flux-system:reflector:tag"}
