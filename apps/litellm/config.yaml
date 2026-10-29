@@ -8,16 +8,6 @@ data:
   config.yaml: |
     model_list:
 
-      - model_name: claude-haiku-4-5
-        litellm_params:
-          model: anthropic/claude-haiku-4-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: low
-          max_tokens: 32000
-          input_cost_per_token: 0.000001
-          output_cost_per_token: 0.000005
-        model_info:
-          health_check_max_tokens: 2048
       - model_name: claude-haiku-5-5
         litellm_params:
           model: anthropic/claude-haiku-5-5
@@ -28,26 +18,6 @@ data:
             type: adaptive
             display: summarized
 
-      - model_name: claude-sonnet-4-5
-        litellm_params:
-          model: anthropic/claude-sonnet-4-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: medium
-          max_tokens: 64000
-          input_cost_per_token: 0.000003
-          output_cost_per_token: 0.000015
-        model_info:
-          health_check_max_tokens: 4096
-      - model_name: claude-sonnet-4-5-low
-        litellm_params:
-          model: anthropic/claude-sonnet-4-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: low
-          max_tokens: 64000
-          input_cost_per_token: 0.000003
-          output_cost_per_token: 0.000015
-        model_info:
-          health_check_max_tokens: 4096
       - model_name: claude-sonnet-5-5
         litellm_params:
           model: anthropic/claude-sonnet-5-5
@@ -57,27 +27,7 @@ data:
           thinking:
             type: adaptive
             display: summarized
-      - model_name: claude-sonnet-5-5-low
-        litellm_params:
-          model: anthropic/claude-sonnet-5-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: low
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000010
-          thinking:
-            type: adaptive
-            display: summarized
 
-      - model_name: claude-opus-4-5
-        litellm_params:
-          model: anthropic/claude-opus-4-5
-          api_key: os.environ/ANTHROPIC_API_KEY
-          reasoning_effort: medium
-          max_tokens: 64000
-          input_cost_per_token: 0.000005
-          output_cost_per_token: 0.000025
-        model_info:
-          health_check_max_tokens: 4096
       - model_name: claude-opus-5-5
         litellm_params:
           model: anthropic/claude-opus-5-5
@@ -88,30 +38,13 @@ data:
             type: adaptive
             display: summarized
       
-      - model_name: claude-auto-4-5
-        litellm_params:
-          model: auto_router/complexity_router
-          complexity_router_config:
-            tiers:
-              SIMPLE: claude-haiku-4-5
-              MEDIUM: claude-sonnet-4-5-low
-              COMPLEX: claude-sonnet-4-5
-              REASONING: claude-opus-4-5
-            classifier_type: llm
-            classifier_llm_config:
-              model: llama3.2
-              timeout_ms: 5000
-            classifier_context_window_size: 0
-            classification_mode: every_request
-            return_raw_model_name: true
-          complexity_router_default_model: claude-sonnet-4-5-low
       - model_name: claude-auto-5-5
         litellm_params:
           model: auto_router/complexity_router
           complexity_router_config:
             tiers:
               SIMPLE: claude-haiku-5-5
-              MEDIUM: claude-sonnet-5-5-low
+              MEDIUM: claude-sonnet-5-5
               COMPLEX: claude-sonnet-5-5
               REASONING: claude-opus-5-5
             classifier_type: llm
@@ -121,7 +54,15 @@ data:
             classifier_context_window_size: 0
             classification_mode: every_request
             return_raw_model_name: true
-          complexity_router_default_model: claude-sonnet-5-5-low
+          complexity_router_default_model: claude-sonnet-5-5
+        model_info:
+          mode: chat
+          max_input_tokens: 1000000
+          max_output_tokens: 128000
+          supports_vision: true
+          supports_reasoning: true
+          supports_function_calling: true
+          supports_prompt_caching: true
       
       - model_name: grok-build-0.1
         litellm_params:
@@ -130,45 +71,12 @@ data:
           input_cost_per_token: 0.000001
           output_cost_per_token: 0.000002
 
-      - model_name: grok-4.7-low
-        litellm_params:
-          model: xai/grok-4.7
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: low
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
-      - model_name: grok-4.7-medium
-        litellm_params:
-          model: xai/grok-4.7
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: medium
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
-      - model_name: grok-4.7-high
-        litellm_params:
-          model: xai/grok-4.7
-          api_key: os.environ/XAI_API_KEY
-          reasoning_effort: high
-          input_cost_per_token: 0.000002
-          output_cost_per_token: 0.000006
-      
       - model_name: grok-4.7
         litellm_params:
-          model: auto_router/complexity_router
-          complexity_router_config:
-            tiers:
-              SIMPLE: grok-4.7-low
-              MEDIUM: grok-4.7-medium
-              COMPLEX: grok-4.7-high
-              REASONING: grok-4.7-high
-            classifier_type: llm
-            classifier_llm_config:
-              model: llama3.2
-              timeout_ms: 5000
-            classifier_context_window_size: 0
-            classification_mode: every_request
-            return_raw_model_name: true
-          complexity_router_default_model: grok-4.7-medium
+          model: xai/grok-4.7
+          api_key: os.environ/XAI_API_KEY
+          input_cost_per_token: 0.000002
+          output_cost_per_token: 0.000006
       
       - model_name: grok-imagine-image-2.0
         litellm_params:
@@ -214,19 +122,51 @@ data:
         litellm_params:
           model: ollama_chat/robit/ornith-vision:9b
           api_base: "http://10.69.1.52:11434"
+        model_info:
+          mode: chat
+          max_input_tokens: 229376
+          max_output_tokens: 32768
+          supports_vision: true
+          supports_reasoning: true
+          supports_function_calling: true
+          supports_prompt_caching: false
       - model_name: ornith
         litellm_params:
           model: ollama_chat/robit/ornith-vision:9b
           api_base: "http://10.69.1.70:11434"
+        model_info:
+          mode: chat
+          max_input_tokens: 229376
+          max_output_tokens: 32768
+          supports_vision: true
+          supports_reasoning: true
+          supports_function_calling: true
+          supports_prompt_caching: false
 
       - model_name: ornith-1.5
         litellm_params:
           model: ollama_chat/smtek/ornith-1.5:9b
           api_base: "http://10.69.1.52:11434"
+        model_info:
+          mode: chat
+          max_input_tokens: 114688
+          max_output_tokens: 16384
+          supports_vision: true
+          supports_reasoning: true
+          supports_function_calling: true
+          supports_prompt_caching: false
       - model_name: ornith-1.5
         litellm_params:
           model: ollama_chat/smtek/ornith-1.5:9b
           api_base: "http://10.69.1.70:11434"
+        model_info:
+          mode: chat
+          max_input_tokens: 114688
+          max_output_tokens: 16384
+          supports_vision: true
+          supports_reasoning: true
+          supports_function_calling: true
+          supports_prompt_caching: false
 
     general_settings:
       store_model_in_db: False
@@ -251,7 +191,7 @@ data:
       routing_strategy: simple-shuffle
       redis_host: litellm-redis-master.litellm.svc.cluster.local
       redis_port: 6379
-    
+
     guardrails:
       - guardrail_name: headroom-compression
         litellm_params:
