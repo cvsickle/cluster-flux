@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sonarr-kids
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik-local
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: local-cvsickle-com-tls
+  routes:
+    - match: Host(`sonarr-kids.local.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: sonarr-kids
+          namespace: external-apps
+          port: 32786

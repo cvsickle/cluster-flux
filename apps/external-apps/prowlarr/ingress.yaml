@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prowlarr
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik-local
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: local-cvsickle-com-tls
+  routes:
+    - match: Host(`prowlarr.local.cvsickle.com`)
+      kind: Rule
+      services:
+        - name: prowlarr
+          namespace: external-apps
+          port: 32784
