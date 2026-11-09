@@ -37,7 +37,7 @@ spec:
     extraEnvVars:
       TZ: "America/New_York"
       CUSTOM_FEATURE_FLAG: "enabled"
-    url: "https://wiki.cvsickle.com"
+    url: "https://wiki.cvsickle.dev"
     autoUpdate:
       enabled: true
       telemetry: false
