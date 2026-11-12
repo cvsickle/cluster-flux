@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 ARG TARGETARCH=amd64
 
 # ── Pinned Versions ──────────────────────────────────────────
-ARG FLUX_VERSION=2.9.6
-ARG KUBECTL_VERSION=1.37.1
+ARG FLUX_VERSION=2.10.0
+ARG KUBECTL_VERSION=1.37.2
 ARG HELM_VERSION=4.2.0
 ARG K9S_VERSION=0.51.0
 ARG CNPG_VERSION=1.29.1
