@@ -62,7 +62,7 @@ spec:
       - name: LD_DB_PORT
         value: "5432"
       - name: LD_CSRF_TRUSTED_ORIGINS
-        value: "https://linkding.local.cvsickle.com,https://link.cvsickle.com"
+        value: "https://linkding.local.cvsickle.com,https://link.cvsickle.com,https://link.cvsickle.dev"
     persistentVolumeClaim:
       create: false
       existingPersistentVolumeClaim: linkding-favicons
