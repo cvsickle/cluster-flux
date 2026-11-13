@@ -9,16 +9,6 @@ spec:
   selector:
     matchLabels:
       pod: cloudflared
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: pod
-                operator: In
-                values:
-                  - cloudflared
-          topologyKey: kubernetes.io/hostname
   template:
     metadata:
       labels:
@@ -29,6 +19,16 @@ spec:
           # Allows ICMP traffic (ping, traceroute) to resources behind cloudflared.
           - name: net.ipv4.ping_group_range
             value: "65532 65532"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: pod
+                    operator: In
+                    values:
+                      - cloudflared
+              topologyKey: kubernetes.io/hostname
       containers:
         - image: cloudflare/cloudflared:2026.10.7 # {"$imagepolicy": "flux-system:cloudflared"}
           imagePullPolicy: Always
