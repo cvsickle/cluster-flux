@@ -77,7 +77,7 @@ spec:
       - name: ENABLE_FORWARD_USER_INFO_HEADERS
         value: "True"
       - name: CORS_ALLOW_ORIGIN
-        value: "https://chat.cvsickle.com;https://chat.local.cvsickle.com"
+        value: "https://chat.cvsickle.com;https://chat.local.cvsickle.com;https://chat.cvsickle.dev"
     # Resource Limits
     resources:
       requests:
