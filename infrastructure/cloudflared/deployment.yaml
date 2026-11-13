@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,7 +29,7 @@ spec:
                       - cloudflared
               topologyKey: kubernetes.io/hostname
       containers:
-        - image: cloudflare/cloudflared:2026.10.7 # {"$imagepolicy": "flux-system:cloudflared"}
+        - image: cloudflare/cloudflared:2026.11.0 # {"$imagepolicy": "flux-system:cloudflared"}
           imagePullPolicy: Always
           name: cloudflared
           env:
