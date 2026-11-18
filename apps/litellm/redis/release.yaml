@@ -9,17 +9,14 @@ spec:
   timeout: 5m
   chartRef:
     kind: OCIRepository
-    name: redis
-    namespace: redis-operator
+    name: redis-standalone
+    namespace: redis-system
   values:
     redisStandalone:
-      redisSecret:
-        secretName: ""
-        secretKey: ""
       resources: {}
         # requests:
         #   cpu: 100m
         #   memory: 128Mi
         # limits:
-        #   cpu: 100m
         #   memory: 128Mi
+    storageSpec: null
