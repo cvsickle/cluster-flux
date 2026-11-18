@@ -176,6 +176,9 @@ data:
           litellm_user_role: internal_user
         - header_name: X-OpenWebUI-User-Email
           litellm_user_role: customer
+      coordination_redis:
+        host: os.environ/REDIS_HOST
+        port: os.environ/REDIS_PORT
 
     litellm_settings:
       drop_params: True
