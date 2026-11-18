@@ -1,10 +1,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: redis
+  name: redis-standalone
   namespace: redis-system
 spec:
   interval: 5m
   url: oci://ghcr.io/ot-container-kit/charts/redis
   ref:
-    semver: 0.16.10 # {"$imagepolicy": "flux-system:redis:tag"}
+    semver: 0.16.10 # {"$imagepolicy": "flux-system:redis-standalone:tag"}

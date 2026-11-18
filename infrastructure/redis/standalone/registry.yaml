@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
-  name: redis
+  name: redis-standalone
   namespace: flux-system
 spec:
   image: ghcr.io/ot-container-kit/charts/redis

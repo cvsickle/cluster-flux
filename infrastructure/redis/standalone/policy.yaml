@@ -2,11 +2,11 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
-  name: redis
+  name: redis-standalone
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: redis
+    name: redis-standalone
   policy:
     semver:
       range: ">=0.16.0 <1.0.0"
