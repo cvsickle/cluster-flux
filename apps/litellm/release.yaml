@@ -58,12 +58,13 @@ spec:
         name: cnpg-litellm-auth
         usernameKey: username
         passwordKey: password
-    # Cache
+    # Disable built-in Redis
     redis:
-      enabled: true
-      architecture: standalone
-      image:
-        repository: bitnamilegacy/redis
+      enabled: false
+    # Use Redis standalone
+    envVars:
+      REDIS_HOST: litellm-redis.litellm.svc.cluster.local
+      REDIS_PORT: "6379"
     # Resource Limits
     resources:
       requests:
@@ -71,13 +72,3 @@ spec:
         memory: "512Mi"
       limits:
         memory: "1.5Gi"
-    # # Additional Arguments
-    # command:
-    #   - /bin/sh
-    #   - -ec
-    # args:
-    #   - |
-    #     /app/.venv/bin/python -m ensurepip --upgrade
-    #     /app/.venv/bin/python -m pip install --no-cache-dir --upgrade pip
-    #     /app/.venv/bin/python -m pip install --no-cache-dir Pillow
-    #     exec /app/.venv/bin/litellm --config=/etc/litellm/config.yaml
