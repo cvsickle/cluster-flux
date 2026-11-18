@@ -187,13 +187,13 @@ data:
       cache: True
       cache_params:
         type: redis
-        host: litellm-redis.litellm.svc.cluster.local
-        port: 6379
+        host: os.environ/REDIS_HOST
+        port: os.environ/REDIS_PORT
         
     router_settings:
       routing_strategy: simple-shuffle
-      redis_host: litellm-redis.litellm.svc.cluster.local
-      redis_port: 6379
+      redis_host: os.environ/REDIS_HOST
+      redis_port: os.environ/REDIS_PORT
 
     guardrails:
       - guardrail_name: headroom-compression
