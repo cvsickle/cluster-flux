@@ -10,13 +10,13 @@ spec:
     namespace: longhorn-system
   interval: 5m0s
   values:
-    controller:
+    global:
+      nodeSelector:
+        storage.longhorn: "true" # Longhorn nodes only.
+    longhornGlobalManager:
       replicas: 3
-    engine:
-      replicas: 3
-    manager:
-      replicas: 3
-    upgradeVersionCheck: false
+    longhornUI:
+      replicas: 2
     defaultBackupStore:
       backupTarget: cifs://10.69.1.40/snapshots/longhorn/
       backupTargetCredentialSecret: longhorn-cifs-monolith
@@ -24,6 +24,7 @@ spec:
     defaultSettings:
       nodeDrainPolicy: always-allow
       defaultDataPath: /mnt/k3s/longhorn
+      systemManagedComponentsNodeSelector: "storage.longhorn:true" # Longhorn nodes only.
     preUpgradeChecker:
       jobEnabled: true
       upgradeVersionCheck: true
