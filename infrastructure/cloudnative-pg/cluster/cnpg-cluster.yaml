@@ -15,13 +15,15 @@ spec:
   # Extensions
   postgresql:
     extensions:
-    - name: pgvector
-      image:
-        reference: ghcr.io/cloudnative-pg/pgvector:0.8.2-18-trixie
+      - name: pgvector
+        image:
+          reference: ghcr.io/cloudnative-pg/pgvector:0.8.2-18-trixie
   affinity:
     enablePodAntiAffinity: true
     podAntiAffinityType: required
     topologyKey: "kubernetes.io/hostname"
+    nodeSelector:
+      storage.longhorn: "true" # Longhorn nodes only.
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
