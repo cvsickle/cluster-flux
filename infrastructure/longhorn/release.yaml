@@ -4,10 +4,15 @@ metadata:
   name: longhorn
   namespace: longhorn-system
 spec:
-  chartRef:
-    kind: OCIRepository
-    name: longhorn
-    namespace: longhorn-system
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.12.1
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+        namespace: longhorn-system
+      interval: 5m
   interval: 5m0s
   values:
     global:
