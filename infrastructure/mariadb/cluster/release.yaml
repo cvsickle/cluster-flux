@@ -23,6 +23,8 @@ spec:
       replicas: 3
       affinity:
         antiAffinityEnabled: true
+      nodeSelector:
+        storage.longhorn: "true" # Longhorn nodes only.
       galera:
         enabled: true
     databases:
@@ -94,4 +96,3 @@ spec:
               key: MINIO_SECRET_KEY
             tls:
               enabled: true
-    
