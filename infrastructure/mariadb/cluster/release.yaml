@@ -27,6 +27,8 @@ spec:
         storage.longhorn: "true" # Longhorn nodes only.
       galera:
         enabled: true
+      updateStrategy:
+        autoUpdateDataPlane: true
     databases:
       - name: uptimekuma
         characterSet: utf8
