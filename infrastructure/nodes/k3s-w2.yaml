@@ -5,5 +5,6 @@ metadata:
   name: k3s-w2
   labels:
     storage.longhorn: "true"
+    node.longhorn.io/create-default-disk: "true"
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
