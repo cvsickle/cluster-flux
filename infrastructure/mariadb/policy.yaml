@@ -9,4 +9,4 @@ spec:
     name: mariadb-operator
   policy:
     semver:
-      range: '>25.10.0 <26.0.0'
+      range: ">25.10.0 <27.0.0"
