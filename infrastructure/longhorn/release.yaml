@@ -29,6 +29,7 @@ spec:
     defaultSettings:
       nodeDrainPolicy: always-allow
       defaultDataPath: /mnt/k3s/longhorn
+      createDefaultDiskLabeledNodes: true
       systemManagedComponentsNodeSelector: "storage.longhorn:true" # Longhorn nodes only.
     preUpgradeChecker:
       jobEnabled: true
