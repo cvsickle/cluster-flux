@@ -28,7 +28,7 @@ spec:
       galera:
         enabled: true
       updateStrategy:
-        autoUpdateDataPlane: true
+        autoUpdateDataPlane: false
     databases:
       - name: uptimekuma
         characterSet: utf8
