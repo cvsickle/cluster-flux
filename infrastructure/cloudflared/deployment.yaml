@@ -29,7 +29,7 @@ spec:
                       - cloudflared
               topologyKey: kubernetes.io/hostname
       containers:
-        - image: cloudflare/cloudflared:2026.11.1 # {"$imagepolicy": "flux-system:cloudflared"}
+        - image: cloudflare/cloudflared:2026.11.2 # {"$imagepolicy": "flux-system:cloudflared"}
           imagePullPolicy: Always
           name: cloudflared
           env:
